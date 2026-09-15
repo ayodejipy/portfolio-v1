@@ -31,8 +31,12 @@ drift from it.
 ### Structure
 
 - Everything app-facing under `app/` (Nuxt 4 default): `pages/`,
-  `components/`, `composables/`, `stores/`, `plugins/`, `assets/`,
-  `middleware/`, `utils/`.
+  `layouts/`, `components/`, `composables/`, `stores/`, `plugins/`,
+  `assets/`, `middleware/`, `utils/`.
+- Typed content (projects, résumé entries, nav links, palette commands)
+  lives in `app/data/`, one file per collection, each exporting its
+  interface next to the data. It is imported explicitly (`~/data/projects`)
+  rather than auto-imported.
 - One component per file. Tightly-coupled components get the parent's name
   as a prefix (`SelectedWork.vue`, `SelectedWorkRow.vue`) instead of nested
   folders. Base/presentational components get a `Base` prefix
