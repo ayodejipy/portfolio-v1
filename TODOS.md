@@ -51,16 +51,16 @@ against it once it's available.
 - [ ] **Ayodeji** Confirm the phase order and route list from Phase 14
       (this plan assumes `/` and `/resume`).
 - [ ] **Ayodeji** Pick the typefaces (`main.css` uses the system stack).
-- [ ] **Claude** Layout shell: `app/layouts/default.vue` with header, main,
+- [x] **Claude** Layout shell: `app/layouts/default.vue` with header, main,
       and footer; `app.vue` renders it through `<NuxtLayout>`.
-- [ ] **Claude** Base styles on top of the color tokens: type scale,
+- [x] **Claude** Base styles on top of the color tokens: type scale,
       spacing, container widths, visible focus styles.
-- [ ] **Claude** Site metadata: title (currently empty), description, and
+- [x] **Claude** Site metadata: title (currently empty), description, and
       social meta through `app.head` / `useHead`.
-- [ ] **Claude** Content model: typed data for projects, résumé entries,
+- [x] **Claude** Content model: typed data for projects, résumé entries,
       nav links, and palette commands, filled with placeholders.
 - [ ] **Ayodeji** Replace the placeholders with real content and copy.
-- [ ] **Claude** First unit test (`app/stores/ui.ts`) so `pnpm test` stops
+- [x] **Claude** First unit test (`app/stores/ui.ts`) so `pnpm test` stops
       exiting 1 on an empty suite.
 
 ## Phase 2: non-animated UI port
