@@ -48,8 +48,9 @@ against it once it's available.
 
 ## Phase 1: groundwork for the UI port
 
-- [ ] **Ayodeji** Confirm the phase order and route list from Phase 14
-      (this plan assumes `/` and `/resume`).
+- [ ] **Ayodeji** Confirm the phase order from Phase 14. Routes are settled
+      (2026-09-16): `/` is home and `/resume` is the resume and employment
+      history.
 - [ ] **Ayodeji** Pick the typefaces (`main.css` uses the system stack).
 - [x] **Claude** Layout shell: `app/layouts/default.vue` with header, main,
       and footer; `app.vue` renders it through `<NuxtLayout>`.
@@ -67,9 +68,9 @@ against it once it's available.
 
 ### Header
 
-- [ ] **Claude** Name/logo link, nav trigger button (`aria-expanded`,
-      `aria-controls`), and a ⌘K trigger with a shortcut hint.
-- [ ] **Claude** Component test: the trigger toggles `ui.navOpen`.
+- [x] **Claude** Name/logo link, nav trigger button (`aria-expanded`), and
+      a ⌘K trigger with a shortcut hint.
+- [x] **Claude** Component test: the trigger toggles `ui.navOpen`.
 
 ### Overlay nav (Concept A, editorial full-screen)
 
@@ -80,6 +81,8 @@ against it once it's available.
       the trigger on close, and navigating closes the overlay.
 - [ ] **Claude** Basic scroll lock while open (body `overflow: hidden`).
 - [ ] **Claude** Component tests for open, close, Escape, and focus return.
+- [ ] **Claude** Point the header trigger's `aria-controls` at the overlay
+      once the overlay element exists to reference.
 
 ### ⌘K command palette (Concept C)
 
@@ -91,6 +94,9 @@ against it once it's available.
 - [ ] **Claude** Focus moves to the input on open and back to the trigger
       on close.
 - [ ] **Claude** Tests for filtering, keyboard navigation, and the shortcut.
+- [ ] **Claude** Show the shortcut hint per platform (⌘K on macOS, Ctrl K
+      elsewhere) without causing a hydration mismatch; the header currently
+      hardcodes ⌘K.
 
 ### Hero (Kinetic Typography)
 

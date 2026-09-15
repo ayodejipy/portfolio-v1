@@ -9,6 +9,6 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Work', to: '/' },
+  { label: 'Home', to: '/' },
   { label: 'Résumé', to: '/resume' },
 ]

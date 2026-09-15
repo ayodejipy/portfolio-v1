@@ -2,7 +2,7 @@
   <div class="site">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="site-header" />
+    <SiteHeader />
 
     <main id="main-content" class="site-main">
       <slot />
