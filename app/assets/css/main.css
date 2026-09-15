@@ -1,0 +1,44 @@
+/*
+  Design tokens locked in during the design phase
+  (see Portfolio Design Process.md). Light editorial body palette +
+  dark terminal palette reserved for the ⌘K command palette overlay.
+*/
+:root {
+  --bg: #f3f0ea;
+  --ink: #1c1a17;
+  --ink-soft: #7a756b;
+  --line: #ddd7cb;
+  --accent: #a8321f;
+
+  --term-bg: #0f110f;
+  --term-bg-deep: #0b0d0c;
+  --term-ink: #e6efe9;
+  --term-accent: #5eff9d;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
