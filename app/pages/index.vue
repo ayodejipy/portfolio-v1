@@ -3,14 +3,14 @@ const ui = useUiStore()
 </script>
 
 <template>
-  <main class="scaffold-check">
-    <h1>Portfolio — scaffold ready</h1>
+  <div class="scaffold-check">
+    <h1>Portfolio: scaffold ready</h1>
     <p>Nuxt 4 + Pinia + GSAP + Lenis + motion-v are wired up.</p>
     <p>Nav store state (Pinia): <code>navOpen = {{ ui.navOpen }}</code></p>
     <button type="button" @click="ui.toggleNav()">
       toggle nav state
     </button>
-  </main>
+  </div>
 </template>
 
 <style scoped>
