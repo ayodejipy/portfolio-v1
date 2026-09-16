@@ -51,9 +51,12 @@ against it once it's available.
 - [ ] **Ayodeji** Confirm the phase order from Phase 14. Routes are settled
       (2026-09-16): `/` is home and `/resume` is the resume and employment
       history.
-- [ ] **Ayodeji** Confirm the typefaces. The concept prototypes use
-      Fraunces (display, often italic), Inter (body), and JetBrains Mono
-      (labels and palette UI); `main.css` is still on the system stack.
+- [ ] **Ayodeji** Choose the typefaces at `/type`, which shows four
+      candidates each for display, body, and mono against a live preview.
+      The concepts used Fraunces, Inter, and JetBrains Mono. Nothing is
+      wired in yet: the site stays on system stacks until this is settled.
+- [ ] **Claude** Delete the `/type` specimen page and load the chosen faces
+      once the decision is made.
 - [x] **Claude** Layout shell: `app/layouts/default.vue` with header, main,
       and footer; `app.vue` renders it through `<NuxtLayout>`.
 - [x] **Claude** Base styles on top of the color tokens: type scale,

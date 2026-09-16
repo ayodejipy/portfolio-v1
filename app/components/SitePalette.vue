@@ -174,11 +174,13 @@ onBeforeUnmount(() => {
 
 <style scoped>
 /*
-  Sizes here are the concept's own fixed pixel values rather than the site
-  type scale: the palette was drawn as a utility surface at these exact
-  measurements. The one deliberate difference is the focus ring, which the
-  concept removes with outline:none and this keeps, restyled for the dark
-  panel.
+  Measurements come from the concept's palette; the colours are the site's
+  own editorial skin rather than the concept's dark terminal one.
+
+  Two deliberate differences from the concept: the light skin, and the focus
+  indicator. The concept removes the ring with outline:none, but the input
+  takes focus every time the palette opens, so a permanent ring fights the
+  design. The divider under the input carries the accent instead.
 */
 .site-palette-backdrop {
   position: fixed;
@@ -189,18 +191,18 @@ onBeforeUnmount(() => {
   justify-content: center;
   padding-top: 14vh;
   backdrop-filter: blur(3px);
-  background: rgba(20, 18, 15, 0.55);
+  background: rgba(28, 26, 23, 0.4);
 }
 
 .site-palette {
   width: 560px;
   max-width: 90vw;
   height: fit-content;
-  border: 1px solid var(--term-line);
+  border: 1px solid var(--line);
   border-radius: 10px;
-  background: var(--term-panel);
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
-  color: var(--term-ink);
+  background: var(--bg);
+  box-shadow: 0 30px 80px -20px rgba(28, 26, 23, 0.45);
+  color: var(--ink);
   font-family: var(--font-mono);
 }
 
@@ -208,26 +210,20 @@ onBeforeUnmount(() => {
   width: 100%;
   padding: 18px 20px;
   border: none;
-  border-bottom: 1px solid var(--term-line);
+  border-bottom: 1px solid var(--line);
   background: none;
-  color: var(--term-ink);
+  color: var(--ink);
   font-family: var(--font-mono);
   font-size: 14px;
 }
 
-/*
-  The concept drops the focus ring entirely. The input takes focus every
-  time the palette opens, so a full ring sits on screen permanently and
-  fights the design. This keeps a visible focus indicator by lighting the
-  divider under the input instead.
-*/
 .site-palette-input:focus-visible {
   outline: none;
-  border-bottom-color: var(--term-accent);
+  border-bottom-color: var(--accent);
 }
 
 .site-palette-input::placeholder {
-  color: var(--term-soft);
+  color: var(--ink-soft);
 }
 
 .site-palette-list {
@@ -243,7 +239,7 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   padding: 11px 12px;
   border-radius: 6px;
-  color: var(--term-soft);
+  color: var(--ink-soft);
   font-size: 13px;
   cursor: pointer;
 }
@@ -256,7 +252,7 @@ onBeforeUnmount(() => {
 
 .site-palette-item-arrow,
 .site-palette-item-label {
-  color: var(--term-ink);
+  color: var(--ink);
 }
 
 .site-palette-item-hint {
@@ -266,18 +262,18 @@ onBeforeUnmount(() => {
 }
 
 .site-palette-item.is-selected {
-  background: rgba(94, 255, 157, 0.09);
+  background: rgba(168, 50, 31, 0.08);
 }
 
 .site-palette-item.is-selected .site-palette-item-arrow,
 .site-palette-item.is-selected .site-palette-item-label,
 .site-palette-item.is-selected .site-palette-item-hint {
-  color: var(--term-accent);
+  color: var(--accent);
 }
 
 .site-palette-empty {
   padding: 11px 20px;
-  color: var(--term-soft);
+  color: var(--ink-soft);
   font-size: 13px;
 }
 </style>

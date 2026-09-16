@@ -1,7 +1,9 @@
 /*
   Design tokens locked in during the design phase
-  (see Portfolio Design Process.md). Light editorial body palette +
-  dark terminal palette reserved for the ⌘K command palette overlay.
+  (see Portfolio Design Process.md). Light editorial body palette + dark
+  terminal palette. The concepts drew the ⌘K palette in the terminal
+  colours, but it now follows the site's own skin, so the --term-* tokens
+  are unused for the moment.
 
   The type scale, spacing scale, and layout tokens below are provisional:
   the typefaces are still to be chosen, so everything sits on the system
@@ -41,10 +43,10 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  /* Fonts. Fraunces and Inter wait on the typeface decision; the palette
-     and the small mono labels are drawn in JetBrains Mono in every concept
-     from 28 August onward. */
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* Fonts. No webfont is loaded yet: the typefaces are still being chosen,
+     see /type for the specimens. Everything sits on system stacks until
+     then, and only this token needs to change when a mono face is picked. */
+  --font-mono: ui-monospace, monospace;
 
   /* Layout */
   --container: 72rem;
