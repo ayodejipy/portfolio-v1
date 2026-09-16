@@ -19,6 +19,9 @@
   --term-bg-deep: #0b0d0c;
   --term-ink: #e6efe9;
   --term-accent: #5eff9d;
+  --term-line: #262b26;
+  --term-panel: #181b18;
+  --term-soft: #6f7d75;
 
   /* Type scale */
   --step--1: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
@@ -74,10 +77,12 @@ body {
 }
 
 /*
-  Scroll lock while the nav overlay is open. This moves onto Lenis once the
-  overlay is animated, since Lenis drives its own scroll position.
+  Scroll lock while the nav overlay or the command palette is open. This moves
+  onto Lenis once they are animated, since Lenis drives its own scroll
+  position. The layout sets these classes.
 */
-body.nav-open {
+body.nav-open,
+body.palette-open {
   overflow: hidden;
 }
 

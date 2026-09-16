@@ -9,12 +9,6 @@ const isOpen = computed(() => ui.navOpen)
 
 useFocusTrap(overlay, isOpen)
 
-useHead({
-  bodyAttrs: {
-    class: computed(() => (ui.navOpen ? 'nav-open' : '')),
-  },
-})
-
 function indexLabel(position: number): string {
   return String(position).padStart(2, '0')
 }

@@ -1,3 +1,21 @@
+<script setup lang="ts">
+const ui = useUiStore()
+
+/**
+ * Both overlays are rendered here, so the body classes they rely on are set
+ * in one place. Two components writing bodyAttrs.class would overwrite each
+ * other's value.
+ */
+const bodyClass = computed(() => [
+  ui.navOpen ? 'nav-open' : '',
+  ui.paletteOpen ? 'palette-open' : '',
+].filter(Boolean).join(' '))
+
+useHead({
+  bodyAttrs: { class: bodyClass },
+})
+</script>
+
 <template>
   <div class="site">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -5,6 +23,8 @@
     <SiteHeader />
 
     <SiteNavOverlay />
+
+    <SitePalette />
 
     <main id="main-content" class="site-main">
       <slot />

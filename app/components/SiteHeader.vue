@@ -2,6 +2,7 @@
 import { site } from '~/data/site'
 
 const ui = useUiStore()
+const shortcutHint = useShortcutHint()
 </script>
 
 <template>
@@ -15,11 +16,13 @@ const ui = useUiStore()
         <button
           type="button"
           class="site-header-command"
+          aria-haspopup="dialog"
+          aria-controls="site-palette"
           aria-keyshortcuts="Meta+K Control+K"
           @click="ui.openPalette()"
         >
           <span>Search</span>
-          <kbd class="site-header-key">⌘K</kbd>
+          <kbd class="site-header-key">{{ shortcutHint }}</kbd>
         </button>
 
         <button

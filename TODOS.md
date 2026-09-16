@@ -88,17 +88,17 @@ against it once it's available.
 
 ### ⌘K command palette (Concept C)
 
-- [ ] **Claude** Dialog markup (`role="dialog"`, `aria-modal`) styled with
+- [x] **Claude** Dialog markup (`role="dialog"`, `aria-modal`) styled with
       the terminal tokens (`--term-*`).
-- [ ] **Claude** Global ⌘K / Ctrl+K shortcut wired to `ui.openPalette`.
-- [ ] **Claude** Search input that filters the command list, arrow-key
+- [x] **Claude** Global ⌘K / Ctrl+K shortcut wired to `ui.openPalette`.
+- [x] **Claude** Search input that filters the command list, arrow-key
       navigation, Enter runs the command, Escape closes.
-- [ ] **Claude** Focus moves to the input on open and back to the trigger
+- [x] **Claude** Focus moves to the input on open and back to the trigger
       on close.
-- [ ] **Claude** Tests for filtering, keyboard navigation, and the shortcut.
-- [ ] **Claude** Show the shortcut hint per platform (⌘K on macOS, Ctrl K
-      elsewhere) without causing a hydration mismatch; the header currently
-      hardcodes ⌘K.
+- [x] **Claude** Tests for filtering, keyboard navigation, and the shortcut.
+- [x] **Claude** Show the shortcut hint per platform (⌘K on macOS, Ctrl K
+      elsewhere) without causing a hydration mismatch. `useShortcutHint`
+      renders the Apple form on the server and corrects itself on mount.
 
 ### Hero (Kinetic Typography)
 
@@ -158,6 +158,11 @@ here is review, debugging, profiling, and keeping the behavior tests green.
       scroll lock onto Lenis
 - [ ] **Ayodeji** View-transition shared-element morphs between pages
       (`experimental.viewTransition` is already on)
+- [ ] **Ayodeji** The experimental view transition logs an unhandled
+      rejection on client-side navigation ("Transition was aborted", seen as
+      both InvalidStateError and TimeoutError). It appeared before the
+      palette existed and breaks nothing today, but the view-transition
+      wiring is yours to settle.
 - [ ] **Claude** Performance trace once the animations are in, and fixes
       for anything outside the motion code.
 
