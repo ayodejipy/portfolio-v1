@@ -80,7 +80,7 @@ const shortcutHint = useShortcutHint()
 
 .site-header-key {
   color: var(--ink-soft);
-  font-family: ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: var(--step--1);
 }
 </style>

@@ -93,7 +93,7 @@ onBeforeUnmount(() => {
 .site-nav-overlay-index {
   margin-right: var(--space-s);
   color: var(--accent);
-  font-family: ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: var(--step--1);
   vertical-align: super;
 }
@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: space-between;
   color: var(--line);
-  font-family: ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: var(--step--1);
   letter-spacing: 0.08em;
 }

@@ -17,7 +17,7 @@ export interface PaletteCommand {
 const navCommands: PaletteCommand[] = navLinks.map(link => ({
   id: `nav:${link.to}`,
   label: link.label,
-  hint: 'Go to',
+  hint: 'Go',
   to: link.to,
 }))
 

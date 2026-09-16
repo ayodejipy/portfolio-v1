@@ -41,6 +41,11 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
+  /* Fonts. Fraunces and Inter wait on the typeface decision; the palette
+     and the small mono labels are drawn in JetBrains Mono in every concept
+     from 28 August onward. */
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
   /* Layout */
   --container: 72rem;
   --measure: 68ch;

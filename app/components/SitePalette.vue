@@ -136,7 +136,7 @@ onBeforeUnmount(() => {
         aria-expanded="true"
         aria-controls="site-palette-list"
         :aria-activedescendant="selected ? optionId(selected) : undefined"
-        placeholder="Type a command or search"
+        placeholder="Type a command or search…"
         autocomplete="off"
       >
 
@@ -157,7 +157,10 @@ onBeforeUnmount(() => {
           @mouseenter="selectedIndex = position"
           @click="activate(command)"
         >
-          <span class="site-palette-item-label">{{ command.label }}</span>
+          <span class="site-palette-item-text">
+            <span class="site-palette-item-arrow" aria-hidden="true">→</span>
+            <span class="site-palette-item-label">{{ command.label }}</span>
+          </span>
           <span class="site-palette-item-hint">{{ command.hint }}</span>
         </li>
       </ul>
@@ -170,11 +173,19 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+/*
+  Sizes here are the concept's own fixed pixel values rather than the site
+  type scale: the palette was drawn as a utility surface at these exact
+  measurements. The one deliberate difference is the focus ring, which the
+  concept removes with outline:none and this keeps, restyled for the dark
+  panel.
+*/
 .site-palette-backdrop {
   position: fixed;
   z-index: 80;
   inset: 0;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
   padding-top: 14vh;
   backdrop-filter: blur(3px);
@@ -190,18 +201,29 @@ onBeforeUnmount(() => {
   background: var(--term-panel);
   box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
   color: var(--term-ink);
-  font-family: ui-monospace, monospace;
+  font-family: var(--font-mono);
 }
 
 .site-palette-input {
   width: 100%;
-  padding: var(--space-s) var(--space-m);
+  padding: 18px 20px;
   border: none;
   border-bottom: 1px solid var(--term-line);
   background: none;
   color: var(--term-ink);
-  font: inherit;
-  font-size: var(--step--1);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+/*
+  The concept drops the focus ring entirely. The input takes focus every
+  time the palette opens, so a full ring sits on screen permanently and
+  fights the design. This keeps a visible focus indicator by lighting the
+  divider under the input instead.
+*/
+.site-palette-input:focus-visible {
+  outline: none;
+  border-bottom-color: var(--term-accent);
 }
 
 .site-palette-input::placeholder {
@@ -210,7 +232,7 @@ onBeforeUnmount(() => {
 
 .site-palette-list {
   max-height: 320px;
-  padding: var(--space-3xs);
+  padding: 8px;
   overflow-y: auto;
   list-style: none;
 }
@@ -219,29 +241,43 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-2xs) var(--space-xs);
+  padding: 11px 12px;
   border-radius: 6px;
   color: var(--term-soft);
-  font-size: var(--step--1);
+  font-size: 13px;
   cursor: pointer;
 }
 
+.site-palette-item-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.site-palette-item-arrow,
 .site-palette-item-label {
   color: var(--term-ink);
+}
+
+.site-palette-item-hint {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .site-palette-item.is-selected {
   background: rgba(94, 255, 157, 0.09);
 }
 
+.site-palette-item.is-selected .site-palette-item-arrow,
 .site-palette-item.is-selected .site-palette-item-label,
 .site-palette-item.is-selected .site-palette-item-hint {
   color: var(--term-accent);
 }
 
 .site-palette-empty {
-  padding: var(--space-s) var(--space-m);
+  padding: 11px 20px;
   color: var(--term-soft);
-  font-size: var(--step--1);
+  font-size: 13px;
 }
 </style>
