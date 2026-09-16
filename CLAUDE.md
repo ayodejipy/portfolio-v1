@@ -18,10 +18,16 @@ he says it's done.
 
 ## Design reference
 
-Full research/decision log — nav, hero, résumé, contact concepts, the
-Vue/Nuxt animation-ecosystem deep dive — lives in **Portfolio Design
-Process.md** in Ayodeji's Obsidian vault, not duplicated here. Ask him for
-it if you need decisions this file doesn't cover.
+The visual reference is a set of standalone HTML prototypes archived in
+Ayodeji's Obsidian vault under `projects/portfolio/concepts/`, indexed by
+`projects/portfolio/portfolio-design-concepts.md`. `homepage.html` is the
+fullest of them: header, overlay nav, ⌘K palette, hero, Selected Work, and
+the résumé teaser. Build from the files dated 28 August 2026 onward;
+`portfolio-concept.html` is an earlier direction that was dropped.
+
+The full research and decision log (**Portfolio Design Process.md**,
+including the Phase 14 build order) is not on this machine. Ask Ayodeji for
+it when you need a decision the prototypes and this file don't cover.
 
 ## Conventions — treat this list as a living standard, not a one-time rule
 
