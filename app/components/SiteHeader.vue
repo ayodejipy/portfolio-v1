@@ -25,6 +25,7 @@ const ui = useUiStore()
         <button
           type="button"
           class="site-header-nav-toggle"
+          aria-controls="site-nav-overlay"
           :aria-expanded="ui.navOpen"
           @click="ui.toggleNav()"
         >

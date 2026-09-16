@@ -4,6 +4,8 @@
 
     <SiteHeader />
 
+    <SiteNavOverlay />
+
     <main id="main-content" class="site-main">
       <slot />
     </main>

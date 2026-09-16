@@ -76,14 +76,14 @@ against it once it's available.
 
 ### Overlay nav (Concept A, editorial full-screen)
 
-- [ ] **Claude** Overlay markup and link list from the nav data, shown and
+- [x] **Claude** Overlay markup and link list from the nav data, shown and
       hidden from `ui.navOpen`.
-- [ ] **Claude** Keep the `body.nav-open` class in sync with the store.
-- [ ] **Claude** Escape closes, focus is trapped while open and returned to
+- [x] **Claude** Keep the `body.nav-open` class in sync with the store.
+- [x] **Claude** Escape closes, focus is trapped while open and returned to
       the trigger on close, and navigating closes the overlay.
-- [ ] **Claude** Basic scroll lock while open (body `overflow: hidden`).
-- [ ] **Claude** Component tests for open, close, Escape, and focus return.
-- [ ] **Claude** Point the header trigger's `aria-controls` at the overlay
+- [x] **Claude** Basic scroll lock while open (body `overflow: hidden`).
+- [x] **Claude** Component tests for open, close, Escape, and focus return.
+- [x] **Claude** Point the header trigger's `aria-controls` at the overlay
       once the overlay element exists to reference.
 
 ### ⌘K command palette (Concept C)
@@ -113,7 +113,8 @@ against it once it's available.
 
 ### Résumé page (Fine Ruler timeline)
 
-- [ ] **Claude** `/resume` route with timeline entries from the data.
+- [ ] **Claude** `/resume` route with timeline entries from the data. A
+      placeholder page already exists so the route resolves; replace it.
 - [ ] **Claude** Static ruler markup (ticks, labels) with stable class names
       the scroll marker can attach to later.
 

@@ -24,6 +24,16 @@ describe('ui store', () => {
     expect(ui.navOpen).toBe(false)
   })
 
+  it('opens and closes the nav overlay through its actions', () => {
+    const ui = useUiStore()
+
+    ui.openNav()
+    expect(ui.navOpen).toBe(true)
+
+    ui.closeNav()
+    expect(ui.navOpen).toBe(false)
+  })
+
   it('opens and closes the palette through its actions', () => {
     const ui = useUiStore()
 
