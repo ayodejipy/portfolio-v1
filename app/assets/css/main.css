@@ -1,7 +1,13 @@
 /*
   Design tokens locked in during the design phase
-  (see Portfolio Design Process.md). Light editorial body palette +
-  dark terminal palette reserved for the ⌘K command palette overlay.
+  (see Portfolio Design Process.md). Light editorial body palette + dark
+  terminal palette. The concepts drew the ⌘K palette in the terminal
+  colours, but it now follows the site's own skin, so the --term-* tokens
+  are unused for the moment.
+
+  The type scale, spacing scale, and layout tokens below are provisional:
+  the typefaces are still to be chosen, so everything sits on the system
+  stack for now.
 */
 :root {
   --bg: #f3f0ea;
@@ -9,11 +15,48 @@
   --ink-soft: #7a756b;
   --line: #ddd7cb;
   --accent: #a8321f;
+  --overlay: #1c1a17;
 
   --term-bg: #0f110f;
   --term-bg-deep: #0b0d0c;
   --term-ink: #e6efe9;
   --term-accent: #5eff9d;
+  --term-line: #262b26;
+  --term-panel: #181b18;
+  --term-soft: #6f7d75;
+
+  /* Type scale */
+  --step--1: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.17rem + 0.4vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.32rem + 0.9vw, 2rem);
+  --step-3: clamp(2rem, 1.65rem + 1.7vw, 3rem);
+  --step-4: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
+
+  /* Spacing scale */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Fonts. No webfont is loaded yet: the typefaces are still being chosen,
+     see /type for the specimens. Everything sits on system stacks until
+     then, and these three tokens are the only place to change once faces
+     are picked. */
+  --font-display: ui-serif, Georgia, serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  /* Layout. The home hero fills the viewport below the header, so the
+     header's height is fixed here rather than left to its padding. */
+  --header-height: 4.25rem;
+  --container: 72rem;
+  --measure: 68ch;
+  --gutter: var(--space-m);
 }
 
 *,
@@ -28,17 +71,100 @@ body {
   padding: 0;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+  Scroll lock while the nav overlay or the command palette is open. This moves
+  onto Lenis once they are animated, since Lenis drives its own scroll
+  position. The layout sets these classes.
+*/
+body.nav-open,
+body.palette-open {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: var(--step-4);
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-2);
+}
+
+h4 {
+  font-size: var(--step-1);
+}
+
+p,
+ul,
+ol {
+  margin: 0;
 }
 
 a {
   color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/*
+  Read by screen readers, invisible on screen. Used for separators inside
+  flex rows, where a plain space is dropped from rendering and adjacent
+  pieces of text would otherwise be announced as one run-on word.
+*/
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }

@@ -11,6 +11,14 @@ export const useUiStore = defineStore('ui', () => {
     navOpen.value = !navOpen.value
   }
 
+  function openNav() {
+    navOpen.value = true
+  }
+
+  function closeNav() {
+    navOpen.value = false
+  }
+
   function openPalette() {
     paletteOpen.value = true
   }
@@ -23,6 +31,8 @@ export const useUiStore = defineStore('ui', () => {
     navOpen,
     paletteOpen,
     toggleNav,
+    openNav,
+    closeNav,
     openPalette,
     closePalette,
   }
