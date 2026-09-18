@@ -126,7 +126,7 @@ against it once it's available.
 
 ### Résumé teaser
 
-- [ ] **Claude** The concept's home page closes with a résumé teaser: a
+- [x] **Claude** The concept's home page closes with a résumé teaser: a
       boxed headline, a row of years, and a link to the full timeline. Build
       it from the résumé data, reusing `BaseSectionHeading`.
 

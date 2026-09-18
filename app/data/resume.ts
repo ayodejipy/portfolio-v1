@@ -3,6 +3,12 @@
  * the real history. `end: null` means the role is current.
  */
 
+/**
+ * One-line summary on the home page résumé teaser. Placeholder copy: the
+ * concept's line described its stand-in persona's career, not yours.
+ */
+export const resumeHeadline = 'Placeholder: a one-line summary of the career so far.'
+
 export interface ResumeEntry {
   id: string
   role: string
