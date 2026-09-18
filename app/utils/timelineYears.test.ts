@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { timelineYears } from './timelineYears'
 
 function entry(start: string, end: string | null): ResumeEntry {
-  return { id: start, role: '', company: '', start, end, summary: '' }
+  return { id: start, role: '', company: '', start, end, highlights: [], stack: [] }
 }
 
 describe('timeline years', () => {
