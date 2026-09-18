@@ -30,7 +30,7 @@ useHead({
       <slot />
     </main>
 
-    <footer class="site-footer" />
+    <SiteFooter />
   </div>
 </template>
 

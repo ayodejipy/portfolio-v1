@@ -139,9 +139,12 @@ against it once it's available.
 
 ### Footer and index
 
-- [ ] **Claude** Footer with contact and social links.
-- [ ] **Claude** Replace the scaffold check page (`app/pages/index.vue`)
-      with the real index: hero, Selected Work, footer.
+- [x] **Claude** Footer: copyright and the palette shortcut hint, as the
+      concept has it. The concept's footer carries no social links; those
+      live in the palette.
+- [x] **Claude** Replace the scaffold check page (`app/pages/index.vue`)
+      with the real index: hero, Selected Work, and the résumé teaser, with
+      the footer in the layout.
 - [ ] **Claude** Error page (`app/error.vue`) for 404s and failures.
 
 ### Contact
