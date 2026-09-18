@@ -1,5 +1,6 @@
 /**
  * Selected Work entries. Placeholder content: replace with real projects.
+ * `stack` is the short technology line shown on each home page row.
  */
 
 export interface Project {
@@ -8,6 +9,7 @@ export interface Project {
   summary: string
   year: number
   role: string
+  stack: string
   href?: string
 }
 
@@ -18,6 +20,7 @@ export const projects: Project[] = [
     summary: 'A one-line summary of what this project was and why it mattered.',
     year: 2026,
     role: 'Design and build',
+    stack: 'Vue / Nuxt',
   },
   {
     slug: 'placeholder-two',
@@ -25,6 +28,7 @@ export const projects: Project[] = [
     summary: 'A one-line summary of what this project was and why it mattered.',
     year: 2025,
     role: 'Frontend',
+    stack: 'React / TypeScript',
   },
   {
     slug: 'placeholder-three',
@@ -32,5 +36,6 @@ export const projects: Project[] = [
     summary: 'A one-line summary of what this project was and why it mattered.',
     year: 2024,
     role: 'Frontend',
+    stack: 'GSAP / Three.js',
   },
 ]

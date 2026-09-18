@@ -120,8 +120,15 @@ against it once it's available.
 
 ### Selected Work
 
-- [ ] **Claude** `SelectedWork.vue` and `SelectedWorkRow.vue`, rendered from
-      the typed project data, with static hover styles (no transitions).
+- [x] **Claude** `SelectedWork.vue` and `SelectedWorkRow.vue`, rendered from
+      the typed project data. The concept's hover slides the row in with a
+      transition, so the hover state is left to the animation pass.
+
+### Résumé teaser
+
+- [ ] **Claude** The concept's home page closes with a résumé teaser: a
+      boxed headline, a row of years, and a link to the full timeline. Build
+      it from the résumé data, reusing `BaseSectionHeading`.
 
 ### Résumé page (Fine Ruler timeline)
 

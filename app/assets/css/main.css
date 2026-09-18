@@ -145,6 +145,23 @@ video {
   outline-offset: 2px;
 }
 
+/*
+  Read by screen readers, invisible on screen. Used for separators inside
+  flex rows, where a plain space is dropped from rendering and adjacent
+  pieces of text would otherwise be announced as one run-on word.
+*/
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .container {
   width: 100%;
   max-width: var(--container);
