@@ -44,7 +44,7 @@ const shortcutHint = useShortcutHint()
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: var(--space-s);
+  min-height: var(--header-height);
   gap: var(--space-m);
 }
 

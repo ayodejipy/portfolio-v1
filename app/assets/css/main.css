@@ -45,10 +45,15 @@
 
   /* Fonts. No webfont is loaded yet: the typefaces are still being chosen,
      see /type for the specimens. Everything sits on system stacks until
-     then, and only this token needs to change when a mono face is picked. */
+     then, and these three tokens are the only place to change once faces
+     are picked. */
+  --font-display: ui-serif, Georgia, serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, monospace;
 
-  /* Layout */
+  /* Layout. The home hero fills the viewport below the header, so the
+     header's height is fixed here rather than left to its padding. */
+  --header-height: 4.25rem;
   --container: 72rem;
   --measure: 68ch;
   --gutter: var(--space-m);
@@ -73,11 +78,7 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: var(--font-body);
   font-size: var(--step-0);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;

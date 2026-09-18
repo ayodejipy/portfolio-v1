@@ -76,6 +76,9 @@ against it once it's available.
 - [x] **Claude** Name/logo link, nav trigger button (`aria-expanded`), and
       a ⌘K trigger with a shortcut hint.
 - [x] **Claude** Component test: the trigger toggles `ui.navOpen`.
+- [ ] **Ayodeji** The concept fixes the header over the page with
+      `mix-blend-mode: difference`, so it floats over the hero and inverts
+      against it. Ours sits in the flow. Decide whether to match it.
 
 ### Overlay nav (Concept A, editorial full-screen)
 
@@ -105,9 +108,15 @@ against it once it's available.
 
 ### Hero (Kinetic Typography)
 
-- [ ] **Claude** Semantic, static heading markup and type styles.
-- [ ] **Ayodeji** Decide whether the kinetic type needs the text split into
-      lines or characters; that splitting belongs to the animation work.
+- [x] **Claude** Semantic, static heading markup and type styles.
+- [ ] **Ayodeji** The headline renders as three block-level lines, the
+      concept's line breaks with the middle line in the accent, so it reads
+      right without motion. The rise-up animation still needs its own
+      wrappers (a clipping line around an inner span); adding those is part
+      of the animation work.
+- [ ] **Ayodeji** The concept layers a hotlinked stock photo over the hero
+      as a 5% grain texture. Decide whether to ship a local texture or drop
+      it; it is left out for now.
 
 ### Selected Work
 
