@@ -133,6 +133,7 @@ onBeforeUnmount(() => {
         class="site-palette-input"
         type="text"
         role="combobox"
+        aria-label="Search commands"
         aria-expanded="true"
         aria-controls="site-palette-list"
         :aria-activedescendant="selected ? optionId(selected) : undefined"

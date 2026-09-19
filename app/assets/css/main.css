@@ -12,9 +12,14 @@
 :root {
   --bg: #f3f0ea;
   --ink: #1c1a17;
-  --ink-soft: #7a756b;
+  /* Darkened from the concept's #7a756b, which reached only 4.03:1 on --bg
+     and failed WCAG AA for normal text. This is 4.73:1. */
+  --ink-soft: #6f6a60;
   --line: #ddd7cb;
   --accent: #a8321f;
+  /* The accent only reaches 2.6:1 on --overlay, so dark surfaces use this
+     lighter tint of it instead, at 5.23:1. */
+  --accent-on-dark: #e2684f;
   --overlay: #1c1a17;
 
   --term-bg: #0f110f;
