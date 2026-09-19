@@ -3,11 +3,13 @@ defineProps<{
   index: string
   title: string
   headingId: string
+  /** Tighter top spacing, as the résumé page uses between its sections. */
+  compact?: boolean
 }>()
 </script>
 
 <template>
-  <div class="base-section-heading">
+  <div class="base-section-heading" :class="{ 'is-compact': compact }">
     <span class="base-section-heading-index" aria-hidden="true">{{ index }}</span>
     <h2 :id="headingId" class="base-section-heading-title">
       {{ title }}
@@ -24,6 +26,10 @@ defineProps<{
   padding-top: 130px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--line);
+}
+
+.base-section-heading.is-compact {
+  padding-top: 60px;
 }
 
 .base-section-heading-index {

@@ -132,10 +132,14 @@ against it once it's available.
 
 ### Résumé page (Fine Ruler timeline)
 
-- [ ] **Claude** `/resume` route with timeline entries from the data. A
-      placeholder page already exists so the route resolves; replace it.
-- [ ] **Claude** Static ruler markup (ticks, labels) with stable class names
-      the scroll marker can attach to later.
+- [x] **Claude** `/resume` page built from the concept: intro, Career
+      Timeline, Education, and Skills, all from the résumé data.
+- [x] **Claude** Static ruler: minor ticks every 22px, plus a major tick and
+      year label per entry, aligned in CSS with no measuring script. Hooks
+      for the motion pass: `.resume-timeline-ruler`, `.resume-timeline-entry`,
+      and `.resume-timeline-entry-year`.
+- [ ] **Ayodeji** Provide the résumé PDF. The download button renders only
+      once `resumeIntro.pdfUrl` is set.
 
 ### Footer and index
 
@@ -174,7 +178,11 @@ here is review, debugging, profiling, and keeping the behavior tests green.
       seam
 - [ ] **Ayodeji** ⌘K palette open and close
 - [ ] **Ayodeji** Cursor-follow
-- [ ] **Ayodeji** Résumé ruler scroll-synced marker (ScrollTrigger)
+- [ ] **Ayodeji** Résumé ruler scroll-synced marker (ScrollTrigger), plus
+      the concept's other scroll states: the active year label, each entry's
+      rule turning accent in view, and the fixed Y readout.
+- [ ] **Ayodeji** Skills scales: the fill and cursor sweep in from zero as
+      the section scrolls into view. They render at their final values now.
 - [ ] **Ayodeji** Lenis config and its GSAP ticker sync (the module is
       registered, but the sync isn't wired), including moving the overlay's
       scroll lock onto Lenis
