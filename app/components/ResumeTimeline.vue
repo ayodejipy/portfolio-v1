@@ -37,6 +37,13 @@ import { resumeEntries } from '~/data/resume'
   }
 }
 
+/* On a phone the full gutter costs the entries too much of the screen. */
+@media (max-width: 480px) {
+  .resume-timeline {
+    --ruler-width: 40px;
+  }
+}
+
 .resume-timeline-body {
   display: flex;
   gap: var(--ruler-gap);

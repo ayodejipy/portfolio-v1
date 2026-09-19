@@ -160,7 +160,10 @@ against it once it's available.
 
 ## Phase 3: hardening (before or alongside animation)
 
-- [ ] **Claude** Responsive pass on every page and component.
+- [x] **Claude** Responsive pass on every page and component. Checked at
+      375, 768, and desktop: no horizontal overflow anywhere. Section
+      headings, overlay padding, and the timeline gutter now scale down
+      instead of holding their desktop values on a phone.
 - [ ] **Claude** Accessibility audit: keyboard paths, screen reader labels,
       and color contrast of the token pairs.
 - [ ] **Claude** End-to-end smoke test (`@nuxt/test-utils/e2e`): open the
