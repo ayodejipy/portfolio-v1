@@ -149,7 +149,8 @@ against it once it's available.
 - [x] **Claude** Replace the scaffold check page (`app/pages/index.vue`)
       with the real index: hero, Selected Work, and the résumé teaser, with
       the footer in the layout.
-- [ ] **Claude** Error page (`app/error.vue`) for 404s and failures.
+- [x] **Claude** Error page (`app/error.vue`) for 404s and failures. It
+      renders inside the site layout and never shows the raw error message.
 
 ### Contact
 
