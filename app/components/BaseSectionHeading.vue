@@ -22,14 +22,14 @@ defineProps<{
   display: flex;
   align-items: baseline;
   gap: 18px;
-  margin-bottom: 50px;
-  padding-top: 130px;
+  margin-bottom: clamp(28px, 6vw, 50px);
+  padding-top: clamp(64px, 14vw, 130px);
   padding-bottom: 24px;
   border-bottom: 1px solid var(--line);
 }
 
 .base-section-heading.is-compact {
-  padding-top: 60px;
+  padding-top: clamp(40px, 8vw, 60px);
 }
 
 .base-section-heading-index {

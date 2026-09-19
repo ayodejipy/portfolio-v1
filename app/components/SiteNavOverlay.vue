@@ -65,13 +65,15 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .site-nav-overlay {
+  --overlay-inset: clamp(24px, 8vw, 64px);
+
   position: fixed;
   z-index: 40;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-inline: var(--space-xl);
+  padding-inline: var(--overlay-inset);
   background: var(--overlay);
   color: var(--bg);
 }
@@ -100,9 +102,9 @@ onBeforeUnmount(() => {
 
 .site-nav-overlay-footer {
   position: absolute;
-  right: var(--space-xl);
+  right: var(--overlay-inset);
   bottom: var(--space-l);
-  left: var(--space-xl);
+  left: var(--overlay-inset);
   display: flex;
   justify-content: space-between;
   color: var(--line);
