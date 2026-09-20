@@ -164,8 +164,13 @@ against it once it's available.
       375, 768, and desktop: no horizontal overflow anywhere. Section
       headings, overlay padding, and the timeline gutter now scale down
       instead of holding their desktop values on a phone.
-- [ ] **Claude** Accessibility audit: keyboard paths, screen reader labels,
-      and color contrast of the token pairs.
+- [x] **Claude** Accessibility audit: keyboard paths, screen reader labels,
+      and colour contrast of the token pairs. Heading order, landmarks, the
+      skip link, and focus styles all passed. Three fixes: `--ink-soft`
+      darkened (4.03 to 4.73 on `--bg`), a new `--accent-on-dark` for the
+      overlay numerals (2.6 to 5.23), and a name on the palette's search
+      field. `contrastRatio.test.ts` reads the real tokens so a palette edit
+      cannot silently drop below AA.
 - [ ] **Claude** End-to-end smoke test (`@nuxt/test-utils/e2e`): open the
       palette, navigate to the résumé, open and close the overlay.
 - [ ] **Ayodeji** Review the full non-animated site and sign off before the

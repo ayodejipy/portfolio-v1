@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
 
 .site-nav-overlay-index {
   margin-right: var(--space-s);
-  color: var(--accent);
+  color: var(--accent-on-dark);
   font-family: var(--font-mono);
   font-size: var(--step--1);
   vertical-align: super;

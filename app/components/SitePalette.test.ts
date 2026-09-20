@@ -40,6 +40,12 @@ describe('site palette', () => {
     expect(palette.findAll('.site-palette-item')).toHaveLength(paletteCommands.length)
   })
 
+  it('gives the search field a name that survives typing', async () => {
+    const palette = await mountPalette()
+
+    expect(palette.get('.site-palette-input').attributes('aria-label')).toBe('Search commands')
+  })
+
   it('filters the list as the query is typed', async () => {
     const palette = await mountPalette()
 
