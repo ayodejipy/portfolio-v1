@@ -171,8 +171,12 @@ against it once it's available.
       overlay numerals (2.6 to 5.23), and a name on the palette's search
       field. `contrastRatio.test.ts` reads the real tokens so a palette edit
       cannot silently drop below AA.
-- [ ] **Claude** End-to-end smoke test (`@nuxt/test-utils/e2e`): open the
-      palette, navigate to the résumé, open and close the overlay.
+- [x] **Claude** End-to-end smoke test (`@nuxt/test-utils/e2e`): open the
+      palette, navigate to the résumé, open and close the overlay, and check
+      a missing page still answers 404. Run it with `pnpm test:e2e`; it is
+      kept out of `pnpm test` because it builds the app. It launches the
+      system Chrome, so CI needs Chrome on the runner or
+      `playwright install chromium`.
 - [ ] **Ayodeji** Review the full non-animated site and sign off before the
       animation phase.
 
