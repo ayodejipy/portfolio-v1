@@ -22,7 +22,12 @@ describe('home hero', () => {
     const wrapper = await mountSuspended(HomeHero)
 
     expect(wrapper.get('section').attributes('aria-labelledby')).toBe('home-hero-heading')
-    expect(wrapper.get('.home-hero-grid').attributes('aria-hidden')).toBe('true')
     expect(wrapper.get('.home-hero-scroll-line').attributes('aria-hidden')).toBe('true')
+  })
+
+  it('carries the id the rail points at', async () => {
+    const wrapper = await mountSuspended(HomeHero)
+
+    expect(wrapper.get('section').attributes('id')).toBe('index')
   })
 })

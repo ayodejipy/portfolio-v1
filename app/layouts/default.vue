@@ -20,6 +20,8 @@ useHead({
   <div class="site">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
+    <SiteGrid />
+
     <SiteHeader />
 
     <SiteNavOverlay />

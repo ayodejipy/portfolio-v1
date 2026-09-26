@@ -5,7 +5,7 @@ const years = timelineYears(resumeEntries, new Date().getFullYear())
 </script>
 
 <template>
-  <section class="resume-teaser" aria-labelledby="resume-teaser-heading">
+  <section id="resume" class="resume-teaser" aria-labelledby="resume-teaser-heading">
     <div class="container">
       <BaseSectionHeading index="02" title="Résumé" heading-id="resume-teaser-heading" />
 

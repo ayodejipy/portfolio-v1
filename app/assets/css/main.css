@@ -16,6 +16,10 @@
      and failed WCAG AA for normal text. This is 4.73:1. */
   --ink-soft: #6f6a60;
   --line: #ddd7cb;
+  /* The grid underlay covers every page, so it uses a lighter line than the
+     rules and borders do. At --line it reads as a table rather than as
+     texture. */
+  --line-soft: #e8e3d8;
   --accent: #a8321f;
   /* The accent only reaches 2.6:1 on --overlay, so dark surfaces use this
      lighter tint of it instead, at 5.23:1. */
@@ -62,6 +66,7 @@
   --container: 72rem;
   --measure: 68ch;
   --gutter: var(--space-m);
+  --grid-cell: 64px;
 }
 
 *,
@@ -165,6 +170,19 @@ video {
   margin: -1px;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/*
+  The grid underlay is a positioned element at z-index 0, and a positioned
+  element paints over ordinary page content whatever the document order. The
+  three regions therefore lift themselves above it. Anything else drawn under
+  the page goes behind the grid, not in front of it.
+*/
+.site-header,
+.site-main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 .container {

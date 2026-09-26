@@ -117,6 +117,9 @@ against it once it's available.
 - [ ] **Ayodeji** The concept layers a hotlinked stock photo over the hero
       as a 5% grain texture. Decide whether to ship a local texture or drop
       it; it is left out for now.
+- [x] **Claude** The hero's own 56px grid is gone, replaced by the
+      site-wide one below. Two grids of different sizes over each other read
+      as a moiré.
 
 ### Selected Work
 
@@ -141,6 +144,21 @@ against it once it's available.
 - [ ] **Ayodeji** Provide the résumé PDF. The download button renders only
       once `resumeIntro.pdfUrl` is set.
 
+### Background grid and section rail
+
+- [x] **Claude** `SiteGrid.vue`: the coordinate-grid concept's persistent
+      64px grid, drawn behind every page from `--line-soft`. Fixed to the
+      viewport, as the concept has it, so the lines hold still while the page
+      scrolls.
+- [x] **Claude** `SiteRail.vue`: the floating left rail, a tick per home
+      section with the current one marked. `useActiveSection` reads the
+      crossings from an IntersectionObserver at 40% of the viewport. It
+      appears only above 1360px, where the gutter beside the container is
+      wide enough to hold it clear of the text.
+- [ ] **Ayodeji** The rail's fill steps from tick to tick. Driving it
+      continuously from scroll position, and easing the change, is animation
+      work: `--rail-progress` is the seam.
+
 ### Footer and index
 
 - [x] **Claude** Footer: copyright and the palette shortcut hint, as the
@@ -154,9 +172,14 @@ against it once it's available.
 
 ### Contact
 
-- [ ] **Ayodeji** Decide where the locked-in contact concept lands (README
-      lists it; the current phase list doesn't).
-- [ ] **Claude** Build it once decided.
+- [x] **Ayodeji** Decided (2026-09-21): contact closes the home page, as the
+      coordinate-grid concept has it, rather than getting a route of its own.
+- [x] **Claude** `HomeContact.vue`: the concept's bordered panel with its two
+      corner marks, the headline, the email address, and the social links
+      from `site.ts`. The copy is placeholder.
+- [ ] **Ayodeji** Say whether Contact should also join the overlay nav and
+      the palette as `/#contact`. Neither lists it today, so off a wide
+      screen the only way to it is scrolling.
 
 ## Phase 3: hardening (before or alongside animation)
 
@@ -194,6 +217,8 @@ here is review, debugging, profiling, and keeping the behavior tests green.
 - [ ] **Ayodeji** Résumé ruler scroll-synced marker (ScrollTrigger), plus
       the concept's other scroll states: the active year label, each entry's
       rule turning accent in view, and the fixed Y readout.
+- [ ] **Ayodeji** Rail fill synced to scroll position, in place of the
+      stepped fill that ships now
 - [ ] **Ayodeji** Skills scales: the fill and cursor sweep in from zero as
       the section scrolls into view. They render at their final values now.
 - [ ] **Ayodeji** Lenis config and its GSAP ticker sync (the module is
