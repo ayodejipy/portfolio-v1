@@ -3,9 +3,7 @@ import { hero } from '~/data/hero'
 </script>
 
 <template>
-  <section class="home-hero" aria-labelledby="home-hero-heading">
-    <div class="home-hero-grid" aria-hidden="true" />
-
+  <section id="index" class="home-hero" aria-labelledby="home-hero-heading">
     <div class="home-hero-content container">
       <p class="home-hero-eyebrow">
         {{ hero.eyebrow }}
@@ -31,10 +29,12 @@ import { hero } from '~/data/hero'
 
 <style scoped>
 /*
-  Sizes are the concept's own values. Two things from it are left out on
+  Sizes are the concept's own values. Three things from it are left out on
   purpose: the rise-up and pulse animations, which belong to the animation
-  pass, and the hotlinked stock-photo grain layer, which is an open decision
-  in TODOS.md.
+  pass; the hotlinked stock-photo grain layer, which is an open decision in
+  TODOS.md; and the hero's own 56px grid, which `SiteGrid` now covers for the
+  whole document. Running both put two grids of different sizes over each
+  other.
 */
 .home-hero {
   position: relative;
@@ -44,16 +44,6 @@ import { hero } from '~/data/hero'
   justify-content: flex-end;
   padding-bottom: 90px;
   overflow: hidden;
-}
-
-.home-hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(circle at 30% 70%, black 0%, transparent 70%);
-  opacity: 0.5;
 }
 
 .home-hero-content {
