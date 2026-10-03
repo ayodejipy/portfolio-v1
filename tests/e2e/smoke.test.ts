@@ -36,6 +36,34 @@ describe('site smoke test', () => {
     await page.close()
   })
 
+  /**
+   * A hash link across a route change is the one navigation the component
+   * tests cannot cover, and it is the one that broke: Nuxt's own scroll
+   * behaviour waits on the view transition's promise, which never settles
+   * while `experimental.viewTransition` is on, so the page arrived at the
+   * top instead of at the section. See app/router.options.ts.
+   */
+  it('reaches the contact section from the résumé page', async () => {
+    const page = await createPage('/resume')
+    await page.waitForLoadState('networkidle')
+
+    await page.locator('.site-header-command').click()
+    await page.locator('.site-palette-input').fill('contact')
+    await page.keyboard.press('Enter')
+    await page.waitForURL('**/#contact')
+
+    const contact = page.locator('#contact')
+    await contact.waitFor({ state: 'visible' })
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0)
+
+    // In the viewport, not merely scrolled somewhere.
+    const top = await contact.evaluate(element => element.getBoundingClientRect().top)
+    const height = await page.evaluate(() => window.innerHeight)
+    expect(top).toBeLessThan(height)
+
+    await page.close()
+  })
+
   it('opens and closes the nav overlay with the keyboard', async () => {
     const page = await createPage('/')
     await page.waitForLoadState('networkidle')
