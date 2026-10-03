@@ -15,16 +15,15 @@
   instead means an absolutely positioned layer on a `position: relative`
   wrapper with no `overflow: hidden` above it.
 
-  `--line-soft` rather than `--line`: at this size the grid is texture behind
-  text, not a rule, and the darker line reads as a table.
+  Its strength is `--grid-line`, one token in main.css.
 */
 .site-grid {
   position: fixed;
   z-index: 0;
   inset: 0;
   background-image:
-    linear-gradient(var(--line-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-cell) var(--grid-cell);
   pointer-events: none;
 }

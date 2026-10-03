@@ -16,10 +16,10 @@
      and failed WCAG AA for normal text. This is 4.73:1. */
   --ink-soft: #6f6a60;
   --line: #ddd7cb;
-  /* The grid underlay covers every page, so it uses a lighter line than the
-     rules and borders do. At --line it reads as a table rather than as
-     texture. */
-  --line-soft: #e8e3d8;
+  /* The grid underlay is drawn at the same weight as the rules and borders.
+     A lighter line was tried first and read as a smudge rather than as a
+     grid. This is the one knob for its strength. */
+  --grid-line: var(--line);
   --accent: #a8321f;
   /* The accent only reaches 2.6:1 on --overlay, so dark surfaces use this
      lighter tint of it instead, at 5.23:1. */
