@@ -177,9 +177,13 @@ against it once it's available.
 - [x] **Claude** `HomeContact.vue`: the concept's bordered panel with its two
       corner marks, the headline, the email address, and the social links
       from `site.ts`. The copy is placeholder.
-- [ ] **Ayodeji** Say whether Contact should also join the overlay nav and
-      the palette as `/#contact`. Neither lists it today, so off a wide
-      screen the only way to it is scrolling.
+- [x] **Ayodeji** Decided (2026-10-03): Contact joins the overlay nav and
+      the palette.
+- [x] **Claude** `/#contact` added to `nav.ts`, which the overlay renders
+      and `commands.ts` turns into a palette command. `nav.test.ts` holds
+      every hash link to a section that exists, since a hash pointing at
+      nothing fails silently, and an end-to-end test covers the jump from
+      the résumé page.
 
 ## Phase 3: hardening (before or alongside animation)
 
@@ -229,8 +233,12 @@ here is review, debugging, profiling, and keeping the behavior tests green.
 - [ ] **Ayodeji** The experimental view transition logs an unhandled
       rejection on client-side navigation ("Transition was aborted", seen as
       both InvalidStateError and TimeoutError). It appeared before the
-      palette existed and breaks nothing today, but the view-transition
-      wiring is yours to settle.
+      palette existed, and it now has one visible symptom: in `pnpm dev`,
+      `/#contact` from the résumé page sometimes lands at the top of the
+      home page instead of at the section, because Nuxt's scroll behaviour
+      waits on the transition's promise. A production build is reliable, and
+      `pnpm test:e2e` covers that, so this stays a dev-only annoyance until
+      the view-transition wiring is settled.
 - [ ] **Claude** Performance trace once the animations are in, and fixes
       for anything outside the motion code.
 

@@ -1,6 +1,10 @@
 /**
- * Primary navigation, shared by the header and the overlay nav.
- * Contact is absent on purpose: where it lives is still undecided (TODOS.md).
+ * Primary navigation, shared by the overlay nav and, through `commands.ts`,
+ * by the palette.
+ *
+ * Contact is a section of the home page rather than a route, so it is
+ * reached by its hash. The id it points at is the one in `sections.ts`,
+ * which the rail also uses.
  */
 
 export interface NavLink {
@@ -11,4 +15,5 @@ export interface NavLink {
 export const navLinks: NavLink[] = [
   { label: 'Home', to: '/' },
   { label: 'Résumé', to: '/resume' },
+  { label: 'Contact', to: '/#contact' },
 ]
