@@ -41,7 +41,6 @@ defineProps<{
 .base-section-heading-title {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.4vw, 2.6rem);
-  font-style: italic;
   font-weight: 500;
 }
 </style>

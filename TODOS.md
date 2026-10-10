@@ -51,12 +51,16 @@ against it once it's available.
 - [ ] **Ayodeji** Confirm the phase order from Phase 14. Routes are settled
       (2026-09-16): `/` is home and `/resume` is the resume and employment
       history.
-- [ ] **Ayodeji** Choose the typefaces at `/type`, which shows four
-      candidates each for display, body, and mono against a live preview.
-      The concepts used Fraunces, Inter, and JetBrains Mono. Nothing is
-      wired in yet: the site stays on system stacks until this is settled.
-- [ ] **Claude** Delete the `/type` specimen page and load the chosen faces
-      once the decision is made.
+- [x] **Ayodeji** Decided (2026-10-09): the site follows the coordinate-grid
+      concept, which settles the faces as Space Grotesk throughout and
+      JetBrains Mono for the technical labels.
+- [x] **Claude** Both faces loaded in `nuxt.config`, and every
+      `font-style: italic` removed: Space Grotesk has no italic, so the
+      browser would have slanted the upright instead.
+- [ ] **Claude** Delete `/type` once the faces are settled for good. It was
+      kept (2026-10-10) as a comparison against the live pairing: it opens
+      on Space Grotesk with JetBrains Mono and loads only the other
+      candidates, so nothing else on the site carries their weight.
 - [x] **Claude** Layout shell: `app/layouts/default.vue` with header, main,
       and footer; `app.vue` renders it through `<NuxtLayout>`.
 - [x] **Claude** Base styles on top of the color tokens: type scale,
@@ -76,9 +80,12 @@ against it once it's available.
 - [x] **Claude** Name/logo link, nav trigger button (`aria-expanded`), and
       a ⌘K trigger with a shortcut hint.
 - [x] **Claude** Component test: the trigger toggles `ui.navOpen`.
-- [ ] **Ayodeji** The concept fixes the header over the page with
-      `mix-blend-mode: difference`, so it floats over the hero and inverts
-      against it. Ours sits in the flow. Decide whether to match it.
+- [x] **Claude** The header now carries the concept's name and role in
+      mono, with the search and menu buttons the concept has no need for:
+      it has no overlay nav or palette.
+- [ ] **Ayodeji** The editorial concept fixed its header over the page with
+      `mix-blend-mode: difference`. The coordinate-grid concept leaves it in
+      the flow, as ours is, so this is settled unless you want otherwise.
 
 ### Overlay nav (Concept A, editorial full-screen)
 
@@ -109,11 +116,13 @@ against it once it's available.
 ### Hero (Kinetic Typography)
 
 - [x] **Claude** Semantic, static heading markup and type styles.
-- [ ] **Ayodeji** The headline renders as three block-level lines, the
-      concept's line breaks with the middle line in the accent, so it reads
-      right without motion. The rise-up animation still needs its own
-      wrappers (a clipping line around an inner span); adding those is part
-      of the animation work.
+- [x] **Claude** The hero follows the coordinate-grid concept: a
+      content-width block centred in the viewport, an upright headline in
+      one colour, and the Focus / Experience / Available row under the
+      intro. The accent-coloured middle line and the scroll cue belonged to
+      the editorial concept and are gone.
+- [ ] **Ayodeji** The rise-up animation still needs its own wrappers (a
+      clipping line around an inner span); adding those is animation work.
 - [ ] **Ayodeji** The concept layers a hotlinked stock photo over the hero
       as a 5% grain texture. Decide whether to ship a local texture or drop
       it; it is left out for now.
@@ -147,9 +156,13 @@ against it once it's available.
 ### Background grid and section rail
 
 - [x] **Claude** `SiteGrid.vue`: the coordinate-grid concept's persistent
-      64px grid, drawn behind every page from `--line-soft`. Fixed to the
+      64px grid, drawn behind every page from `--grid-line`. Fixed to the
       viewport, as the concept has it, so the lines hold still while the page
-      scrolls.
+      scrolls. Softened and masked to match the concept (2026-10-09): it is
+      strongest across the top of the screen and fades out below.
+- [x] **Claude** `SiteHud.vue`: the concept's `00 / INDEX` readout in the
+      top corner, reading the same active section as the rail. One
+      observer, owned by the page, feeds both.
 - [x] **Claude** `SiteRail.vue`: the floating left rail, a tick per home
       section with the current one marked. `useActiveSection` reads the
       crossings from an IntersectionObserver at 40% of the viewport. It

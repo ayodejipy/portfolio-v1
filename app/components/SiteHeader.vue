@@ -13,6 +13,10 @@ const shortcutHint = useShortcutHint()
       </NuxtLink>
 
       <div class="site-header-actions">
+        <p class="site-header-role">
+          {{ site.role }}
+        </p>
+
         <button
           type="button"
           class="site-header-command"
@@ -49,10 +53,29 @@ const shortcutHint = useShortcutHint()
 }
 
 .site-header-brand {
-  font-size: var(--step-1);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* The concept carries the role beside the name. It is the first thing to go
+   when the bar gets tight. */
+.site-header-role {
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .site-header-role {
+    display: none;
+  }
 }
 
 .site-header-actions {
@@ -67,8 +90,10 @@ const shortcutHint = useShortcutHint()
   border: 1px solid var(--line);
   background: none;
   color: inherit;
-  font: inherit;
-  font-size: var(--step--1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
@@ -81,6 +106,6 @@ const shortcutHint = useShortcutHint()
 .site-header-key {
   color: var(--ink-soft);
   font-family: var(--font-mono);
-  font-size: var(--step--1);
+  font-size: 11px;
 }
 </style>

@@ -52,7 +52,6 @@ import { resumeIntro } from '~/data/resume'
   max-width: 16ch;
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 6.4vw, 5rem);
-  font-style: italic;
   font-weight: 500;
   line-height: 1.05;
 }
