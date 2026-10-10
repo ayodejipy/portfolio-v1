@@ -107,7 +107,6 @@ const companyLine = computed(() =>
 .resume-timeline-entry-role {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-  font-style: italic;
   font-weight: 500;
 }
 

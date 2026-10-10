@@ -11,18 +11,26 @@ describe('home hero', () => {
     expect(headline).toBe(hero.headline.map(line => line.text).join(' '))
   })
 
-  it('marks only the accent lines with the accent class', async () => {
+  it('renders the headline as its separate lines', async () => {
     const wrapper = await mountSuspended(HomeHero)
-    const accentLines = wrapper.findAll('.home-hero-line.is-accent').map(line => line.text())
+    const lines = wrapper.findAll('.home-hero-line').map(line => line.text())
 
-    expect(accentLines).toEqual(hero.headline.filter(line => line.accent).map(line => line.text))
+    expect(lines).toEqual(hero.headline.map(line => line.text))
   })
 
-  it('labels the section with its headline and hides the decorative layers', async () => {
+  it('labels the section with its headline', async () => {
     const wrapper = await mountSuspended(HomeHero)
 
     expect(wrapper.get('section').attributes('aria-labelledby')).toBe('home-hero-heading')
-    expect(wrapper.get('.home-hero-scroll-line').attributes('aria-hidden')).toBe('true')
+  })
+
+  it('lists the meta facts as a description list', async () => {
+    const wrapper = await mountSuspended(HomeHero)
+    const labels = wrapper.findAll('.home-hero-fact-label').map(fact => fact.text())
+    const values = wrapper.findAll('.home-hero-fact-value').map(fact => fact.text())
+
+    expect(labels).toEqual(hero.meta.map(fact => fact.label))
+    expect(values).toEqual(hero.meta.map(fact => fact.value))
   })
 
   it('carries the id the rail points at', async () => {

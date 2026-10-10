@@ -48,7 +48,6 @@ import { education } from '~/data/resume'
 .resume-education-title {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-style: italic;
 }
 
 .resume-education-meta {

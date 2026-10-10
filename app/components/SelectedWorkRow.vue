@@ -46,7 +46,6 @@ const tag = computed(() => (props.project.href ? 'a' : 'div'))
 .selected-work-row-name {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
-  font-style: italic;
 }
 
 .selected-work-row-meta {

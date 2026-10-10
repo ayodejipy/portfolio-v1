@@ -49,7 +49,6 @@ const years = timelineYears(resumeEntries, new Date().getFullYear())
   max-width: 20ch;
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-style: italic;
 }
 
 .resume-teaser-years {

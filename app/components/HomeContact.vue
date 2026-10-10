@@ -82,7 +82,6 @@ import { site } from '~/data/site'
   margin-inline: auto;
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 5vw, 3.2rem);
-  font-style: italic;
   line-height: 1.05;
 }
 

@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import type { PageSection } from '~/data/sections'
 
+/*
+  The current section is passed in rather than watched here, because the HUD
+  needs the same value and one observer should answer both.
+*/
 const props = defineProps<{
   sections: PageSection[]
+  activeId: string
 }>()
 
-/*
-  The list is read once, on mount, since the sections of a page do not come
-  and go. A page that changed them would need the observer rebuilt.
-*/
-const activeId = useActiveSection(props.sections.map(section => section.id))
-
 const activePosition = computed(() => {
-  const position = props.sections.findIndex(section => section.id === activeId.value)
+  const position = props.sections.findIndex(section => section.id === props.activeId)
   return position === -1 ? 0 : position
 })
 
@@ -55,13 +54,13 @@ function indexLabel(position: number) {
           v-for="(section, position) in sections"
           :key="section.id"
           class="site-rail-tick"
-          :class="{ 'is-active': section.id === activeId }"
+          :class="{ 'is-active': position === activePosition }"
           :style="{ top: tickOffset(position) }"
         >
           <a
             class="site-rail-link"
             :href="`#${section.id}`"
-            :aria-current="section.id === activeId ? 'true' : undefined"
+            :aria-current="position === activePosition ? 'true' : undefined"
           >
             <!-- The space is explicit: the template would drop it, and the
                  number and label would be announced as one word. -->

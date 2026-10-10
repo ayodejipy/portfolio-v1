@@ -15,7 +15,12 @@
   instead means an absolutely positioned layer on a `position: relative`
   wrapper with no `overflow: hidden` above it.
 
-  Its strength is `--grid-line`, one token in main.css.
+  Its colour is `--grid-line`, one token in main.css.
+
+  The mask is the concept's: the grid is at its strongest across the top of
+  the screen and fades out below. Because the layer is fixed, the fade is
+  fixed to the viewport too, so the strong band stays at the top of the
+  screen however far the page is scrolled.
 */
 .site-grid {
   position: fixed;
@@ -25,6 +30,8 @@
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-cell) var(--grid-cell);
+  mask-image: radial-gradient(circle at 50% 0%, black 0%, black 40%, transparent 85%);
+  opacity: 0.55;
   pointer-events: none;
 }
 
