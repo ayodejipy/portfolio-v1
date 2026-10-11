@@ -215,8 +215,8 @@ against it once it's available.
       palette, navigate to the résumé, open and close the overlay, and check
       a missing page still answers 404. Run it with `pnpm test:e2e`; it is
       kept out of `pnpm test` because it builds the app. It launches the
-      system Chrome, so CI needs Chrome on the runner or
-      `playwright install chromium`.
+      system Chrome, which `ubuntu-latest` ships, so CI needs no browser
+      download.
 - [ ] **Ayodeji** Review the full non-animated site and sign off before the
       animation phase.
 
@@ -260,7 +260,12 @@ here is review, debugging, profiling, and keeping the behavior tests green.
 - [ ] **Ayodeji** Choose hosting (static `nuxt generate` or a server) and
       the domain.
 - [ ] **Ayodeji** Create the remote repository.
-- [ ] **Claude** CI workflow: lint, test, and build on every push.
+- [x] **Claude** CI workflow (`.github/workflows/ci.yml`): lint, unit tests
+      and build in one job, the end-to-end suite in another, on pushes to
+      main and on every pull request. Node and pnpm versions come from
+      `.nvmrc` and `package.json`, so CI cannot drift from a local checkout.
+      The runner image ships Google Chrome, which is what the e2e suite
+      drives; a step checks for it and names the fix if that changes.
 - [ ] **Claude** Deployment config for the chosen host.
 - [ ] **Ayodeji** Design the social share image.
 - [ ] **Claude** Wire up the share image and a sitemap.

@@ -56,6 +56,13 @@ drift from it.
 - Composables: `use` prefix, named for what they return, one job each.
 - Multi-word component names go general → specific (`SearchButtonClear`,
   not `ClearSearchButton`).
+- Branches carry a type prefix, so the chip on a pull request and in the
+  Actions list says what the change is before you open it:
+  `feature/` for new capability, `fix/` for a correction, `chore/` for
+  tooling, config and dependencies, `docs/` where only writing changes.
+  Then a kebab-case slug: `chore/ci-workflow`, `feature/contact-section`.
+  This repo has no ticket keys; a project that has them puts the key after
+  the prefix, as in `feature/UI-319-observations-kotlin-api`.
 
 ### Component style
 
