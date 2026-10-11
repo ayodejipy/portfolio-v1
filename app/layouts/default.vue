@@ -47,14 +47,20 @@ useHead({
   flex: 1;
 }
 
+/*
+  A solid chip rather than a bordered one: its old --line border measured
+  1.3:1 against the page, so the boundary of the only control that appears
+  on focus was all but invisible. Dark on light reaches 16.71:1.
+*/
 .skip-link {
   position: absolute;
   z-index: 10;
   top: var(--space-xs);
   left: var(--space-xs);
   padding: var(--space-3xs) var(--space-xs);
-  border: 1px solid var(--line);
-  background: var(--bg);
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
 }
 
 .skip-link:not(:focus) {

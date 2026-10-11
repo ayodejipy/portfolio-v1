@@ -20,6 +20,10 @@
   --accent: #3452ff;
   /* Tint of the accent for accent-coloured fills behind text. */
   --accent-soft: #e4e8ff;
+  /* The accent only reaches 4.55:1 on --accent-soft, which clears AA with
+     nothing to spare. Accent-coloured text on a tinted surface uses this
+     darker blue instead, at 6.44:1 there and 7.11:1 on the page. */
+  --accent-ink: #2540cc;
   /* The accent only reaches 3.32:1 on --overlay, so dark surfaces use this
      lighter tint of it instead, at 6.64:1. */
   --accent-on-dark: #7f94ff;
