@@ -14,6 +14,13 @@
   --ink: #13141a;
   --ink-soft: #63636d;
   --line: #dcd8cc;
+  /* Borders that draw a control: the header buttons and the palette's search
+     field. --line is 1.29:1 on the page, and 1.4.11 asks 3:1 for the visual
+     boundary of a user interface component. This is 3.36:1, with enough
+     headroom to survive a slightly darker page. Rules and panels that only
+     separate or decorate stay on --line: the criterion does not cover them,
+     and at this weight they would read as a table. */
+  --line-control: #8a8574;
   /* The grid underlay is softer than the rules and borders, and SiteGrid
      fades it as well. This is the one knob for its colour. */
   --grid-line: #e9e6db;

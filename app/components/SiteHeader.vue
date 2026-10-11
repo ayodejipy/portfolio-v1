@@ -87,7 +87,7 @@ const shortcutHint = useShortcutHint()
 .site-header-command,
 .site-header-nav-toggle {
   padding: var(--space-3xs) var(--space-xs);
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-control);
   background: none;
   color: inherit;
   font-family: var(--font-mono);

@@ -64,6 +64,12 @@ describe('palette tokens clear WCAG AA for normal text', () => {
     expect(contrastRatio(token['--accent-ink']!, token['--accent-soft']!)).toBeGreaterThanOrEqual(AA_NORMAL_TEXT)
   })
 
+  /* 1.4.11: a control's own boundary, as drawn on the header buttons and
+     the palette's search field. */
+  it('the border that draws a control', () => {
+    expect(contrastRatio(token['--line-control']!, token['--bg']!)).toBeGreaterThanOrEqual(3)
+  })
+
   /* 1.4.11: the bar that marks the selected row has to be visible on it. */
   it('the selected-row bar against the row it marks', () => {
     expect(contrastRatio(token['--accent']!, token['--accent-soft']!)).toBeGreaterThanOrEqual(3)
