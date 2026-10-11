@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A later push to the same branch makes the run in flight pointless.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Nothing here writes to the repository.
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, unit tests, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      # Reads the pnpm version from package.json's packageManager field, so
+      # CI and a local checkout cannot drift apart.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      # Fails rather than resolving fresh versions if the lockfile is stale.
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm build
+
+  e2e:
+    name: End-to-end
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # The suite drives the system Chrome, because the project depends on
+      # playwright-core, which ships no browsers of its own. The runner image
+      # has Chrome preinstalled; this step fails loudly, with a line naming
+      # the fix, if that ever stops being true.
+      - name: Check the runner has Chrome
+        run: google-chrome --version || { echo "::error::No system Chrome on the runner. Either install it, or add a Playwright browser download step and point browserOptions in tests/e2e/smoke.test.ts at it."; exit 1; }
+
+      # Separate from the job above because it builds the app before it runs,
+      # so a failure here should read as "the built site is broken", not as a
+      # unit test failure.
+      - run: pnpm test:e2e

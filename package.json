@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.6.0",
   "description": "Personal frontend developer portfolio: Nuxt 4 + Vue 3.",
   "keywords": ["personal", "portfolio", "nuxt", "vue"],
   "scripts": {
