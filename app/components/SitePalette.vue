@@ -233,7 +233,7 @@ onBeforeUnmount(() => {
   width: 100%;
   padding: 18px 20px;
   border: none;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line-control);
   background: none;
   color: var(--ink);
   font-family: var(--font-mono);
