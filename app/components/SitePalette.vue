@@ -30,6 +30,22 @@ const matches = computed<PaletteCommand[]>(() => {
 
 const selected = computed(() => matches.value[selectedIndex.value])
 
+/**
+ * Read out to assistive tech as the query narrows the list. Without it the
+ * filtering is silent: the audit found no live region anywhere on the site,
+ * so a screen reader user typing into the palette heard nothing back, not
+ * even that there was nothing left to pick.
+ */
+const matchSummary = computed(() => {
+  const count = matches.value.length
+
+  if (count === 0) {
+    return 'No matches'
+  }
+
+  return `${count} ${count === 1 ? 'command' : 'commands'}`
+})
+
 useFocusTrap(panel, isOpen)
 
 function optionId(command: PaletteCommand): string {
@@ -169,6 +185,12 @@ onBeforeUnmount(() => {
       <p v-if="matches.length === 0" class="site-palette-empty">
         No matches
       </p>
+
+      <!-- Always in the DOM, so a screen reader is already watching it when
+           the text changes. -->
+      <p class="visually-hidden" role="status">
+        {{ matchSummary }}
+      </p>
     </div>
   </div>
 </template>
@@ -192,7 +214,7 @@ onBeforeUnmount(() => {
   justify-content: center;
   padding-top: 14vh;
   backdrop-filter: blur(3px);
-  background: rgba(28, 26, 23, 0.4);
+  background: rgb(19 20 26 / 40%);
 }
 
 .site-palette {
@@ -202,7 +224,7 @@ onBeforeUnmount(() => {
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--bg);
-  box-shadow: 0 30px 80px -20px rgba(28, 26, 23, 0.45);
+  box-shadow: 0 30px 80px -20px rgb(19 20 26 / 45%);
   color: var(--ink);
   font-family: var(--font-mono);
 }
@@ -262,14 +284,22 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
+/*
+  The selected row. The tint alone measured 1.13:1 against the panel, which
+  is no indicator at all, so the bar carries it: --accent on --accent-soft is
+  4.55:1, well past the 3:1 that a state indicator needs. The text goes
+  --accent-ink rather than --accent, which only reaches 4.49:1 on this tint.
+*/
 .site-palette-item.is-selected {
-  background: rgba(168, 50, 31, 0.08);
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+  background: var(--accent-soft);
 }
 
 .site-palette-item.is-selected .site-palette-item-arrow,
 .site-palette-item.is-selected .site-palette-item-label,
 .site-palette-item.is-selected .site-palette-item-hint {
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .site-palette-empty {

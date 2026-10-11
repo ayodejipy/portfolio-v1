@@ -133,6 +133,19 @@ describe('site palette', () => {
     expect(ui.paletteOpen).toBe(false)
   })
 
+  it('tells assistive tech how many commands are left as the query narrows', async () => {
+    const palette = await mountPalette()
+    const status = () => palette.get('[role="status"]').text()
+
+    expect(status()).toBe(`${paletteCommands.length} commands`)
+
+    await palette.get('.site-palette-input').setValue('résumé')
+    expect(status()).toBe('1 command')
+
+    await palette.get('.site-palette-input').setValue('zzz')
+    expect(status()).toBe('No matches')
+  })
+
   it('closes on Escape', async () => {
     await mountPalette()
     const ui = useUiStore()

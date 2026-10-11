@@ -58,4 +58,14 @@ describe('palette tokens clear WCAG AA for normal text', () => {
   it('numerals on the nav overlay', () => {
     expect(contrastRatio(token['--accent-on-dark']!, token['--overlay']!)).toBeGreaterThanOrEqual(AA_NORMAL_TEXT)
   })
+
+  /* The palette's selected row. --accent itself only reaches 4.49 here. */
+  it('accent text on an accent-tinted surface', () => {
+    expect(contrastRatio(token['--accent-ink']!, token['--accent-soft']!)).toBeGreaterThanOrEqual(AA_NORMAL_TEXT)
+  })
+
+  /* 1.4.11: the bar that marks the selected row has to be visible on it. */
+  it('the selected-row bar against the row it marks', () => {
+    expect(contrastRatio(token['--accent']!, token['--accent-soft']!)).toBeGreaterThanOrEqual(3)
+  })
 })
