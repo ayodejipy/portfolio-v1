@@ -8,6 +8,13 @@ import type { PageSection } from '~/data/sections'
 const props = defineProps<{
   sections: PageSection[]
   activeId: string
+  /**
+   * 0 to 1 while something else owns the fill, null when the rail reports
+   * the current section as usual. The intro passes its own progress here so
+   * the track fills once on first paint before it becomes a position
+   * indicator; see the boot state in the ui store.
+   */
+  progressOverride?: number | null
 }>()
 
 const activePosition = computed(() => {
@@ -28,7 +35,13 @@ function tickOffset(position: number) {
  * component knows: a section is current or it is not. Reading scroll position
  * to fill it continuously, and easing the change, is animation work.
  */
-const railProgress = computed(() => `${percentAlongTrack(activePosition.value)}%`)
+const railProgress = computed(() => {
+  if (props.progressOverride != null) {
+    return `${Math.round(props.progressOverride * 10000) / 100}%`
+  }
+
+  return `${percentAlongTrack(activePosition.value)}%`
+})
 
 /** Rounded to two places, so the rendered style stays readable. */
 function percentAlongTrack(position: number) {

@@ -59,6 +59,30 @@ describe('site rail', () => {
     expect((await mountRail('contact')).get('.site-rail').attributes('style')).toBe('--rail-progress: 100%;')
   })
 
+  it('fills from an override when something else owns the track', async () => {
+    const wrapper = await mountSuspended(SiteRail, {
+      props: { sections, activeId: 'contact', progressOverride: 0.25 },
+    })
+
+    expect(wrapper.get('.site-rail').attributes('style')).toBe('--rail-progress: 25%;')
+  })
+
+  it('still marks the current section while the override runs', async () => {
+    const wrapper = await mountSuspended(SiteRail, {
+      props: { sections, activeId: 'resume', progressOverride: 0 },
+    })
+
+    expect(wrapper.get('[aria-current="true"]').attributes('href')).toBe('#resume')
+  })
+
+  it('goes back to the section fill when the override is null', async () => {
+    const wrapper = await mountSuspended(SiteRail, {
+      props: { sections, activeId: 'resume', progressOverride: null },
+    })
+
+    expect(wrapper.get('.site-rail').attributes('style')).toBe('--rail-progress: 66.67%;')
+  })
+
   it('falls back to the first section when given an id it does not know', async () => {
     const wrapper = await mountRail('nonsense')
 

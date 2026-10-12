@@ -18,6 +18,19 @@ useHead({
 
 <template>
   <div class="site">
+    <!--
+      Nuxt's own route-change indicator, configured rather than built. It
+      stays hidden until a navigation outlasts the throttle, so the fast case
+      (nearly every case here: the site reaches LCP in about 750ms on a
+      throttled phone) shows nothing at all. Under a second needs no loading
+      feedback; past that, this is the feedback.
+    -->
+    <NuxtLoadingIndicator
+      :height="2"
+      :throttle="300"
+      color="var(--accent)"
+    />
+
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <SiteGrid />
