@@ -34,6 +34,21 @@ export default defineNuxtConfig({
     },
   },
 
+  /*
+    Ship the built CSS and JS with gzip and brotli siblings, so whatever
+    serves them can hand over the compressed copy instead of compressing on
+    every request. A performance trace found the static assets going out
+    uncompressed.
+
+    This covers files on disk only. The server-rendered HTML is compressed by
+    the host or the proxy in front of it, which is a deploy-time setting
+    rather than a build one: worth checking once hosting is chosen, since the
+    document is the largest uncompressed response on the page.
+  */
+  nitro: {
+    compressPublicAssets: { gzip: true, brotli: true },
+  },
+
   // Native shared-element transitions (Chromium-first, degrades gracefully).
   // See Phase 12 of the design doc for how this maps to the nav/hero/résumé prototypes.
   experimental: {
