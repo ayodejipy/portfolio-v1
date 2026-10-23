@@ -4,17 +4,15 @@ import type { PageSection } from '~/data/sections'
 /*
   The current section is passed in rather than watched here, because the HUD
   needs the same value and one observer should answer both.
+
+  The component marks which tick is current and nothing else. It does not set
+  `--rail-progress`: the fill is driven from outside, by the intro and by the
+  scroll sync, so that exactly one thing writes that property. Vue writing it
+  as well would overwrite whatever a tween had just set, on any re-render.
 */
 const props = defineProps<{
   sections: PageSection[]
   activeId: string
-  /**
-   * 0 to 1 while something else owns the fill, null when the rail reports
-   * the current section as usual. The intro passes its own progress here so
-   * the track fills once on first paint before it becomes a position
-   * indicator; see the boot state in the ui store.
-   */
-  progressOverride?: number | null
 }>()
 
 const activePosition = computed(() => {
@@ -26,22 +24,6 @@ const activePosition = computed(() => {
 function tickOffset(position: number) {
   return `${percentAlongTrack(position)}%`
 }
-
-/**
- * How far down the track the fill reaches, published as `--rail-progress` so
- * the animation pass has one value to take over.
- *
- * It steps from one tick to the next, because that is the whole of what this
- * component knows: a section is current or it is not. Reading scroll position
- * to fill it continuously, and easing the change, is animation work.
- */
-const railProgress = computed(() => {
-  if (props.progressOverride != null) {
-    return `${Math.round(props.progressOverride * 10000) / 100}%`
-  }
-
-  return `${percentAlongTrack(activePosition.value)}%`
-})
 
 /** Rounded to two places, so the rendered style stays readable. */
 function percentAlongTrack(position: number) {
@@ -58,7 +40,7 @@ function indexLabel(position: number) {
 </script>
 
 <template>
-  <nav class="site-rail" aria-label="Page sections" :style="{ '--rail-progress': railProgress }">
+  <nav class="site-rail" aria-label="Page sections">
     <div class="site-rail-track">
       <span class="site-rail-fill" aria-hidden="true" />
 

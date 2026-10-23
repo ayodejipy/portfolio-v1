@@ -8,17 +8,12 @@ export const useUiStore = defineStore('ui', () => {
   const paletteOpen = ref(false)
 
   /*
-    The intro: the rail's fill runs 0 to 1 on first paint, then goes back to
-    reporting which section you are in.
-
-    `booting` starts false, so with no animation written the rail behaves
-    exactly as it does today. An intro opts in by calling `startBoot()`,
-    driving `bootProgress` from its own timeline, and calling `finishBoot()`
-    when it lands. Nothing here animates anything: it only says whether the
-    intro owns the fill, and how far along it is.
+    Whether the rail's intro is running. The fill itself is a CSS custom
+    property written by the timeline, not state: this is only the flag that
+    says an intro owns the rail right now, so the scroll sync can stay out of
+    its way until it lands.
   */
   const booting = ref(false)
-  const bootProgress = ref(0)
 
   function toggleNav() {
     navOpen.value = !navOpen.value
@@ -34,17 +29,10 @@ export const useUiStore = defineStore('ui', () => {
 
   function startBoot() {
     booting.value = true
-    bootProgress.value = 0
-  }
-
-  /** Takes 0 to 1; anything outside that is clamped. */
-  function setBootProgress(value: number) {
-    bootProgress.value = Math.min(1, Math.max(0, value))
   }
 
   function finishBoot() {
     booting.value = false
-    bootProgress.value = 1
   }
 
   function openPalette() {
@@ -59,9 +47,7 @@ export const useUiStore = defineStore('ui', () => {
     navOpen,
     paletteOpen,
     booting,
-    bootProgress,
     startBoot,
-    setBootProgress,
     finishBoot,
     toggleNav,
     openNav,

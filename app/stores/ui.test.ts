@@ -52,39 +52,15 @@ describe('ui store', () => {
     const ui = useUiStore()
 
     expect(ui.booting).toBe(false)
-    expect(ui.bootProgress).toBe(0)
   })
 
-  it('hands the fill to the intro and takes it back again', () => {
+  it('raises and lowers the flag that says an intro owns the rail', () => {
     const ui = useUiStore()
 
     ui.startBoot()
     expect(ui.booting).toBe(true)
 
-    ui.setBootProgress(0.5)
-    expect(ui.bootProgress).toBe(0.5)
-
     ui.finishBoot()
     expect(ui.booting).toBe(false)
-    expect(ui.bootProgress).toBe(1)
-  })
-
-  it('clamps progress to the 0 to 1 range a timeline might overshoot', () => {
-    const ui = useUiStore()
-
-    ui.setBootProgress(1.4)
-    expect(ui.bootProgress).toBe(1)
-
-    ui.setBootProgress(-0.2)
-    expect(ui.bootProgress).toBe(0)
-  })
-
-  it('restarts from zero when the intro runs again', () => {
-    const ui = useUiStore()
-
-    ui.setBootProgress(0.8)
-    ui.startBoot()
-
-    expect(ui.bootProgress).toBe(0)
   })
 })

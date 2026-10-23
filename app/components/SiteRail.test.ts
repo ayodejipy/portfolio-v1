@@ -53,34 +53,17 @@ describe('site rail', () => {
     expect(wrapper.get('[aria-current="true"]').attributes('href')).toBe('#resume')
   })
 
-  it('fills the track as far as the current section', async () => {
-    expect((await mountRail('index')).get('.site-rail').attributes('style')).toBe('--rail-progress: 0%;')
-    expect((await mountRail('resume')).get('.site-rail').attributes('style')).toBe('--rail-progress: 66.67%;')
-    expect((await mountRail('contact')).get('.site-rail').attributes('style')).toBe('--rail-progress: 100%;')
-  })
+  /*
+    The fill is written from outside, by the intro and the scroll sync, so
+    that one thing owns `--rail-progress`. This holds the component to its
+    half of that bargain: if it starts writing the property again, whatever
+    had just been tweened gets overwritten on the next re-render.
+  */
+  it('leaves the fill to whatever drives it from outside', async () => {
+    const wrapper = await mountRail('resume')
 
-  it('fills from an override when something else owns the track', async () => {
-    const wrapper = await mountSuspended(SiteRail, {
-      props: { sections, activeId: 'contact', progressOverride: 0.25 },
-    })
-
-    expect(wrapper.get('.site-rail').attributes('style')).toBe('--rail-progress: 25%;')
-  })
-
-  it('still marks the current section while the override runs', async () => {
-    const wrapper = await mountSuspended(SiteRail, {
-      props: { sections, activeId: 'resume', progressOverride: 0 },
-    })
-
-    expect(wrapper.get('[aria-current="true"]').attributes('href')).toBe('#resume')
-  })
-
-  it('goes back to the section fill when the override is null', async () => {
-    const wrapper = await mountSuspended(SiteRail, {
-      props: { sections, activeId: 'resume', progressOverride: null },
-    })
-
-    expect(wrapper.get('.site-rail').attributes('style')).toBe('--rail-progress: 66.67%;')
+    expect(wrapper.get('.site-rail').attributes('style')).toBeUndefined()
+    expect(wrapper.get('.site-rail-fill').attributes('style')).toBeUndefined()
   })
 
   it('falls back to the first section when given an id it does not know', async () => {
