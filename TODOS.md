@@ -168,9 +168,8 @@ against it once it's available.
       crossings from an IntersectionObserver at 40% of the viewport. It
       appears only above 1360px, where the gutter beside the container is
       wide enough to hold it clear of the text.
-- [ ] **Ayodeji** The rail's fill steps from tick to tick. Driving it
-      continuously from scroll position, and easing the change, is animation
-      work: `--rail-progress` is the seam.
+- [x] **Claude** The rail's fill is no longer stepped: see the rail intro
+      and scroll sync in Phase 4.
 
 ### Footer and index
 
@@ -234,8 +233,12 @@ here is review, debugging, profiling, and keeping the behavior tests green.
 - [ ] **Ayodeji** Résumé ruler scroll-synced marker (ScrollTrigger), plus
       the concept's other scroll states: the active year label, each entry's
       rule turning accent in view, and the fixed Y readout.
-- [ ] **Ayodeji** Rail fill synced to scroll position, in place of the
-      stepped fill that ships now
+- [x] **Rail intro and scroll sync** (2026-10-24, paired). The fill runs 0
+      to 100% on first paint, then a scrubbed ScrollTrigger ties it to how
+      far down the page you are. The handover is the intro's `onComplete`,
+      so the two never run at once, and the sync starts from `onMounted`
+      when the intro is skipped. `SiteRail` no longer writes
+      `--rail-progress`: one owner, held in place by a test.
 - [ ] **Ayodeji** Skills scales: the fill and cursor sweep in from zero as
       the section scrolls into view. They render at their final values now.
 - [ ] **Ayodeji** Lenis config and its GSAP ticker sync (the module is
