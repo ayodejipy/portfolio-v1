@@ -5,6 +5,17 @@ import { paletteCommands } from '~/data/commands'
 import { useUiStore } from '~/stores/ui'
 import SitePalette from './SitePalette.vue'
 
+/*
+  GSAP is stubbed here. In happy-dom a real tween blurs whatever element it
+  touches, which would fail the focus tests for a reason a browser never
+  reproduces. The animations themselves are covered end to end.
+*/
+mockNuxtImport('useMotion', () => () => ({
+  to: () => ({}),
+  fromTo: () => ({}),
+  set: () => ({}),
+}))
+
 const { navigateToMock } = vi.hoisted(() => ({ navigateToMock: vi.fn() }))
 
 mockNuxtImport('navigateTo', () => navigateToMock)

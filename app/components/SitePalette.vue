@@ -3,10 +3,15 @@ import type { PaletteCommand } from '~/data/commands'
 import { paletteCommands } from '~/data/commands'
 
 const ui = useUiStore()
+const backdrop = ref<HTMLElement | null>(null)
 const panel = ref<HTMLElement | null>(null)
 const query = ref('')
 const selectedIndex = ref(0)
 const isOpen = computed(() => ui.paletteOpen)
+const isClosing = computed(() => ui.paletteStatus === 'closing')
+
+const $gsap = useMotion()
+const reducedMotion = useReducedMotion()
 
 /**
  * Strips accents so a query typed without them still matches, for example
@@ -110,11 +115,51 @@ function onKeydown(event: KeyboardEvent): void {
   }
 }
 
-watch(isOpen, (open) => {
-  if (!open) {
+watch(() => ui.paletteVisible, (visible) => {
+  if (!visible) {
     query.value = ''
     selectedIndex.value = 0
   }
+})
+
+/*
+  The panel drops a little and settles while the scrim fades up under it.
+  Short, because this is a tool: anything slower and the shortcut stops
+  feeling like a shortcut.
+*/
+watch(isOpen, async (open) => {
+  if (!open || reducedMotion.value) {
+    return
+  }
+
+  await nextTick()
+
+  $gsap.fromTo(backdrop.value, { opacity: 0 }, { opacity: 1, duration: 0.18, ease: 'power1.out' })
+
+  $gsap.fromTo(
+    panel.value,
+    { y: -12, scale: 0.98, opacity: 0 },
+    { y: 0, scale: 1, opacity: 1, duration: 0.24, ease: 'power2.out' },
+  )
+})
+
+/*
+  Leaving is the same move reversed and faster. `done` removes the palette,
+  and it runs from the scrim's tween because that is the last thing on
+  screen.
+*/
+useExitTransition(isClosing, ui.finishClosePalette, (done) => {
+  $gsap.to(panel.value, { y: -8, scale: 0.98, opacity: 0, duration: 0.14, ease: 'power1.in' })
+
+  $gsap.to(backdrop.value, {
+    opacity: 0,
+    duration: 0.16,
+    ease: 'power1.in',
+    onComplete: () => {
+      $gsap.set([backdrop.value, panel.value], { clearProps: 'opacity,transform' })
+      done()
+    },
+  })
 })
 
 watch(query, () => {
@@ -132,8 +177,11 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    v-show="ui.paletteOpen"
+    v-show="ui.paletteVisible"
+    ref="backdrop"
     class="site-palette-backdrop"
+    :aria-hidden="isClosing || undefined"
+    :inert="isClosing || undefined"
     @click.self="ui.closePalette()"
   >
     <div

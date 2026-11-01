@@ -63,4 +63,78 @@ describe('ui store', () => {
     ui.finishBoot()
     expect(ui.booting).toBe(false)
   })
+
+  describe('surfaces that close in two steps', () => {
+    it('opens the nav straight to open', () => {
+      const ui = useUiStore()
+
+      ui.openNav()
+
+      expect(ui.navStatus).toBe('open')
+      expect(ui.navOpen).toBe(true)
+      expect(ui.navVisible).toBe(true)
+    })
+
+    /* Still painted, so an exit has something to animate, but no longer
+       interactive, so focus and Escape have already moved on. */
+    it('keeps the nav visible but not open while it leaves', () => {
+      const ui = useUiStore()
+
+      ui.openNav()
+      ui.closeNav()
+
+      expect(ui.navStatus).toBe('closing')
+      expect(ui.navOpen).toBe(false)
+      expect(ui.navVisible).toBe(true)
+    })
+
+    it('is gone once the exit finishes it', () => {
+      const ui = useUiStore()
+
+      ui.openNav()
+      ui.closeNav()
+      ui.finishCloseNav()
+
+      expect(ui.navStatus).toBe('closed')
+      expect(ui.navVisible).toBe(false)
+    })
+
+    it('does not start a second exit for a surface already leaving', () => {
+      const ui = useUiStore()
+
+      ui.openNav()
+      ui.closeNav()
+      ui.closeNav()
+
+      expect(ui.navStatus).toBe('closing')
+    })
+
+    it('toggles from open to leaving and back to open', () => {
+      const ui = useUiStore()
+
+      ui.toggleNav()
+      expect(ui.navStatus).toBe('open')
+
+      ui.toggleNav()
+      expect(ui.navStatus).toBe('closing')
+
+      ui.toggleNav()
+      expect(ui.navStatus).toBe('open')
+    })
+
+    it('runs the palette through the same three steps', () => {
+      const ui = useUiStore()
+
+      ui.openPalette()
+      expect(ui.paletteOpen).toBe(true)
+
+      ui.closePalette()
+      expect(ui.paletteStatus).toBe('closing')
+      expect(ui.paletteOpen).toBe(false)
+      expect(ui.paletteVisible).toBe(true)
+
+      ui.finishClosePalette()
+      expect(ui.paletteVisible).toBe(false)
+    })
+  })
 })

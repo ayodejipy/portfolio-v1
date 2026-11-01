@@ -1,9 +1,20 @@
-import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import { flushPromises } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { navLinks } from '~/data/nav'
 import { useUiStore } from '~/stores/ui'
 import SiteNavOverlay from './SiteNavOverlay.vue'
+
+/*
+  GSAP is stubbed here. In happy-dom a real tween blurs whatever element it
+  touches, which would fail the focus tests for a reason a browser never
+  reproduces. The animations themselves are covered end to end.
+*/
+mockNuxtImport('useMotion', () => () => ({
+  to: () => ({}),
+  fromTo: () => ({}),
+  set: () => ({}),
+}))
 
 describe('site nav overlay', () => {
   it('renders one link per nav entry, numbered from zero', async () => {

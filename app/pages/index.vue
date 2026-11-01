@@ -24,7 +24,7 @@ const activeId = useActiveSection(homeSections.map(section => section.id))
   ScrollTrigger is not named here on purpose: the plugin registers it with
   GSAP, which is all `scrollTrigger:` in a tween config needs.
 */
-const { $gsap } = useNuxtApp()
+const $gsap = useMotion()
 const ui = useUiStore()
 
 let settle: gsap.core.Tween | null = null
