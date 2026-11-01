@@ -6,9 +6,13 @@ const ui = useUiStore()
  * in one place. Two components writing bodyAttrs.class would overwrite each
  * other's value.
  */
+/*
+  Driven by `visible`, not `open`: the scroll stays locked until a surface
+  has finished leaving, so the page cannot jump under an exit animation.
+*/
 const bodyClass = computed(() => [
-  ui.navOpen ? 'nav-open' : '',
-  ui.paletteOpen ? 'palette-open' : '',
+  ui.navVisible ? 'nav-open' : '',
+  ui.paletteVisible ? 'palette-open' : '',
 ].filter(Boolean).join(' '))
 
 useHead({
