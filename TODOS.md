@@ -121,8 +121,9 @@ against it once it's available.
       one colour, and the Focus / Experience / Available row under the
       intro. The accent-coloured middle line and the scroll cue belonged to
       the editorial concept and are gone.
-- [ ] **Ayodeji** The rise-up animation still needs its own wrappers (a
-      clipping line around an inner span); adding those is animation work.
+- [x] **Claude** The rise-up animation has its wrappers: each line is a
+      clipping window with an inner span to raise. See the Phase 4 entry for
+      why the reveal itself is CSS rather than GSAP.
 - [ ] **Ayodeji** The concept layers a hotlinked stock photo over the hero
       as a 5% grain texture. Decide whether to ship a local texture or drop
       it; it is left out for now.
@@ -225,7 +226,18 @@ Every item includes its `usePreferredReducedMotion` fallback. Claude's role
 here is review, debugging, profiling, and keeping the behavior tests green.
 
 - [ ] **Ayodeji** Blueprint loader sequence (GSAP)
-- [ ] **Ayodeji** Hero reveal and kinetic typography
+- [x] **Hero reveal** (2026-11-01, paired). The eyebrow fades up, the
+      headline rises line by line out of its own clipping window, and the
+      intro and meta row settle in under it. Written as CSS keyframes, not a
+      GSAP timeline, because it has to be running before the page hydrates:
+      driven from JavaScript the hero has to be held invisible until mount,
+      which measured 1588ms LCP against a 824ms baseline on a 4x-throttled
+      CPU. The CSS version measures 852ms, and only because the intro
+      paragraph, which is the LCP element, moves without fading. Fading it
+      put LCP back to 1740ms. Pinned by `tests/e2e/hero.test.ts`.
+- [ ] **Ayodeji** Kinetic typography beyond the load reveal, if it is still
+      wanted: the concept has nothing past the rise, so this needs a
+      decision before it needs code.
 - [ ] **Ayodeji** Overlay nav open and close, including the delayed-close
       seam
 - [ ] **Ayodeji** ⌘K palette open and close
