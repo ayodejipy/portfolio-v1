@@ -242,9 +242,17 @@ here is review, debugging, profiling, and keeping the behavior tests green.
       seam
 - [ ] **Ayodeji** ⌘K palette open and close
 - [ ] **Ayodeji** Cursor-follow
-- [ ] **Ayodeji** Résumé ruler scroll-synced marker (ScrollTrigger), plus
-      the concept's other scroll states: the active year label, each entry's
-      rule turning accent in view, and the fixed Y readout.
+- [x] **Résumé ruler** (2026-11-20, paired). All four states. The marker is
+      a scrubbed ScrollTrigger running `top 40%` to `bottom 40%`, the same
+      reading line `useActiveSection` watches, so the marker holds that line
+      while the ruler slides past under it and stays level with the entry
+      whose year is lit. The year comes from `useActiveSection`, one at a
+      time; the connector rules and major ticks come from `useInView`, a new
+      sibling composable with a wider band, so a stretch of the ruler lights
+      rather than a point. The `Y ####` readout is written straight to the
+      element from the trigger's `onUpdate`, not through a ref, because it
+      changes every frame of a scroll. Pinned by `tests/e2e/ruler.test.ts`:
+      four of its five cases fail if the reading line is wrong.
 - [x] **Rail intro and scroll sync** (2026-10-24, paired). The fill runs 0
       to 100% on first paint, then a scrubbed ScrollTrigger ties it to how
       far down the page you are. The handover is the intro's `onComplete`,
