@@ -63,6 +63,29 @@ const companyLine = computed(() =>
   height: 1px;
   background: var(--line);
   content: '';
+  transition: background-color 0.35s ease;
+}
+
+/*
+  Two states, set from the timeline, and they say different things.
+
+  `is-in-view` is every entry in front of the reader, so the rule joining it
+  to the ruler and its major tick come up to accent: a lit stretch of ruler
+  rather than a lit point.
+
+  `is-active` is the single entry under the reading line, and only its year
+  is lit. Colour alone carries it, which is acceptable here because the
+  state is a convenience and not information the page withholds otherwise:
+  every year is legible at all times, and the entry itself says its dates in
+  the range above the role.
+*/
+.resume-timeline-entry.is-in-view::before,
+.resume-timeline-entry.is-in-view .resume-timeline-entry-tick {
+  background: var(--accent);
+}
+
+.resume-timeline-entry.is-active .resume-timeline-entry-year {
+  color: var(--accent);
 }
 
 /*
@@ -83,6 +106,7 @@ const companyLine = computed(() =>
   width: 24px;
   height: 1px;
   background: var(--ink-soft);
+  transition: background-color 0.35s ease;
 }
 
 .resume-timeline-entry-year {
@@ -93,6 +117,15 @@ const companyLine = computed(() =>
   font-family: var(--font-mono);
   font-size: 11px;
   white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-timeline-entry::before,
+  .resume-timeline-entry-tick,
+  .resume-timeline-entry-year {
+    transition: none;
+  }
 }
 
 .resume-timeline-entry-range {
