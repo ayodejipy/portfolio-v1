@@ -9,7 +9,13 @@ export default defineNuxtConfig({
     'lenis/nuxt',
   ],
 
-  css: ['~/assets/css/main.css'],
+  /*
+    Lenis's own stylesheet first, so ours can override it. It carries the
+    rule that does the work of the scroll lock: a stopped Lenis clips the
+    document's overflow, which holds the page still while a surface is open
+    over it.
+  */
+  css: ['lenis/dist/lenis.css', '~/assets/css/main.css'],
 
   /*
     The site's three faces, served by Google Fonts. `display=swap` so text

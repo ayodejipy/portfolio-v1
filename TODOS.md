@@ -253,9 +253,21 @@ here is review, debugging, profiling, and keeping the behavior tests green.
       `--rail-progress`: one owner, held in place by a test.
 - [ ] **Ayodeji** Skills scales: the fill and cursor sweep in from zero as
       the section scrolls into view. They render at their final values now.
-- [ ] **Ayodeji** Lenis config and its GSAP ticker sync (the module is
-      registered, but the sync isn't wired), including moving the overlay's
-      scroll lock onto Lenis
+- [x] **Lenis and the GSAP ticker** (2026-11-20, paired). `<VueLenis root>`
+      in the layout drives the window's own scroll, so everything that reads
+      scroll position, ScrollTrigger included, is unchanged. Its own rAF loop
+      is off and GSAP's ticker calls `raf` instead, which makes the ticker
+      the single clock the page animates on; `lagSmoothing(0)` goes with it,
+      because GSAP drops time after a stall and Lenis integrates real
+      elapsed time. The scroll lock is Lenis's now: `stop()` clips the
+      document through the library's stylesheet, with the old body rule left
+      underneath for the keyboard, the scrollbar and the case where Lenis
+      never starts. `lerp: 0.14` rather than the default 0.1: an 800px wheel
+      gesture measures 72% of the distance at 170ms and 95% at 370ms, which
+      is as precise as an asymptote gets. Reduced motion keeps Lenis mounted
+      but hands the wheel back to the browser. Pinned by
+      `tests/e2e/scroll.test.ts`, including the dead-page case: with nothing
+      calling `raf`, Lenis swallows the wheel and the page never moves.
 - [ ] **Ayodeji** View-transition shared-element morphs between pages
       (`experimental.viewTransition` is already on)
 - [ ] **Ayodeji** The experimental view transition logs an unhandled

@@ -104,9 +104,14 @@ body {
 }
 
 /*
-  Scroll lock while the nav overlay or the command palette is open. This moves
-  onto Lenis once they are animated, since Lenis drives its own scroll
-  position. The layout sets these classes.
+  Scroll lock while the nav overlay or the command palette is open. The work
+  is done by Lenis: `useLenisScroll` stops it, and a stopped Lenis clips the
+  document's overflow through its own stylesheet.
+
+  This stays as the floor under that. It is what holds the page if Lenis
+  never starts, and it is the one that keeps a keyboard or a dragged
+  scrollbar from moving the page behind an open surface. The layout sets
+  these classes.
 */
 body.nav-open,
 body.palette-open {
