@@ -18,6 +18,18 @@ describe('home hero', () => {
     expect(lines).toEqual(hero.headline.map(line => line.text))
   })
 
+  /*
+    The window and the thing that rises inside it. Without the inner span
+    there is nothing to move and nothing to clip it, and the reveal is a
+    stylesheet away from being silently dead. Whether it animates is an e2e
+    question; that the markup it needs is here is this one.
+  */
+  it('gives every line an inner span for the reveal to raise', async () => {
+    const wrapper = await mountSuspended(HomeHero)
+
+    expect(wrapper.findAll('.home-hero-line-inner')).toHaveLength(hero.headline.length)
+  })
+
   it('labels the section with its headline', async () => {
     const wrapper = await mountSuspended(HomeHero)
 
